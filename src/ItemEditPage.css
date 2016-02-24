@@ -1,0 +1,97 @@
+.root {
+  clear: left;
+}
+
+.row {
+  display: block;
+  margin-left: 1rem;
+}
+
+.object, .array {
+  display: inline-table;
+}
+
+.object:before {
+  display: inline-block;
+  content: "{";
+}
+
+.object:after {
+  display: inline-block;
+  content: "}";
+}
+
+.object .string:after {
+  display: inline-block;
+  content: ',';
+}
+
+.object.string:last-child:after {
+  content: '';
+}
+
+.array:before {
+  display: inline-block;
+  content: "[";
+}
+
+.array:after {
+  display: inline-block;
+  content: "]";
+}
+
+.array .string:after {
+  display: inline-block;
+  content: ',';
+}
+
+.array.string:last-child:after {
+  content: '';
+}
+
+.delete {
+  float: right;
+  margin-left: 0.5em;
+  visibility: hidden;
+}
+
+.value, .key, .string, .number, .boolean {
+  display: inline-block;
+  margin-left: 0.1rem;
+}
+
+.value:hover .delete, .key:hover .delete, .string:hover .delete, .number:hover .delete, .boolean:hover .delete {
+  visibility: visible;
+}
+
+.value:before, .key:before, .string:before, .number:before, .boolean:before {
+  content: ' ';
+}
+
+.key {
+  color: #00008B;
+}
+
+.key:after {
+  content: ":";
+}
+
+.string {
+  color: green;
+}
+
+.number {
+  color: blue;
+}
+
+.boolean {
+  color: red;
+}
+
+.AddButton {
+  display: inline-flex;
+}
+
+.AddButton .add-button, .AddButton .add-input {
+  display: inline-block;
+}
