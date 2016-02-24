@@ -11,10 +11,10 @@
     "url": "git+https://github.com/Eightyplus/react-json-editor.git"
   },
   "keywords": [
-    "React",
-    "JSON",
+    "react",
+    "json",
     "editor",
-    "JSX"
+    "jsx"
   ],
   "author": "Morten Friesgaard <friesgaard@gmail.com>",
   "license": "MIT",
