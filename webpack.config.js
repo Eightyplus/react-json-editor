@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 const PATHS = {
     src: path.join(__dirname, 'src'),
@@ -27,9 +28,20 @@ module.exports = {
                 test: /\.jsx?$/,
                 include: PATHS.src,
                 loader: 'babel',
-                plugins: ["transform-react-jsx"],
+                plugins: ['transform-react'],
                 query: {
-                    presets: ['react', 'es2015', "stage-0"]
+                    presets: ['es2015', 'stage-0', 'react']
+                },
+                'env': {
+                    'development': {
+                        'plugins': [['react-transform', {
+                            'transforms': [{
+                                'transform': 'react-transform-hmr',
+                                'imports': ['react'],
+                                'locals': ['module']
+                            }]
+                        }]]
+                    }
                 }
             }
         ]
