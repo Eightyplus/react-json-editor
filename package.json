@@ -1,6 +1,6 @@
 {
   "name": "react-json-edit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "JSON Editor for React",
   "main": "index.js",
   "scripts": {
