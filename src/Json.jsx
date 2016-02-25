@@ -1,3 +1,5 @@
+import './style.css';
+
 import React, { PropTypes, Component } from 'react';
 
 import {render_item} from './Helpers'
