@@ -4,7 +4,20 @@ import {render_item} from './Helpers'
 import AddButton from './AddButton'
 import KeyItem from './KeyItem'
 
+const propTypes = {
+  jkey: PropTypes.string.isRequired,
+  doc: PropTypes.object.isRequired,
+  propagateChanges: PropTypes.func.isRequired
+};
+
 class ObjectItem extends Component {
+
+  constructor(props) {
+    super(props);
+    this.addItem = this.addItem.bind();
+    this.propagateChanges = this.propagateChanges.bind();
+    this.propagateKeyChange = this.propagateKeyChange.bind();
+  }
 
   addButtonSetup() {
     return [
@@ -21,13 +34,13 @@ class ObjectItem extends Component {
     ];
   }
 
-  addItem = (values) => {
+  addItem(values) {
     const doc = this.props.doc;
     doc[values[0]] = values[1];
     this.props.propagateChanges('add', this.props.jkey, doc);
   };
 
-  propagateChanges = (change, key, value) => {
+  propagateChanges(change, key, value) {
     const doc = this.props.doc;
     switch(change) {
       case 'delete':
@@ -41,7 +54,7 @@ class ObjectItem extends Component {
     this.props.propagateChanges('update', this.props.jkey, doc);
   };
 
-  propagateKeyChange = (change, oldKey, key) => {
+  propagateKeyChange(change, oldKey, key) {
     const entry = this.props.doc[oldKey];
     const doc = this.props.doc;
     switch(change) {
@@ -72,5 +85,7 @@ class ObjectItem extends Component {
     </div>);
   }
 }
+
+ObjectItem.propTypes = propTypes;
 
 export default ObjectItem;

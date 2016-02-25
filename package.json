@@ -24,19 +24,17 @@
   },
   "homepage": "https://github.com/Eightyplus/react-json-editor#readme",
   "devDependencies": {
-    "babel-core": "^6.5.2",
-    "babel-loader": "^6.2.3",
-    "babel-plugin-react-transform": "^2.0.0",
-    "babel-plugin-transform-react-jsx": "^6.5.2",
-    "babel-preset-es2015": "^6.5.0",
-    "babel-preset-react": "^6.5.0",
-    "babel-preset-stage-0": "^6.5.0",
-    "css-loader": "^0.23.1",
-    "react-transform-hmr": "^1.0.2",
+    "babel": "^5.8.34",
+    "babel-eslint": "^4.1.6",
+    "babel-loader": "^5.3.3",
+    "babel-plugin-react-transform": "^1.1.1",
+    "react-transform-hmr": "^1.0.1",
+    "css-loader": "^0.23.0",
     "style-loader": "^0.13.0",
-    "webpack": "^1.12.12"
+    "webpack": "^1.12.9"
   },
   "dependencies": {
+    "babel-core": "5.8.33",
     "react": "^0.14.7"
   }
 }

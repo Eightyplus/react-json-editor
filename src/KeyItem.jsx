@@ -2,15 +2,15 @@ import React, { PropTypes, Component } from 'react';
 
 import ValueItem from './ValueItem'
 
-class KeyItem extends ValueItem {
+const propTypes = {
+  jkey: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]).isRequired,
+  propagateChanges: PropTypes.array.isRequired
+};
 
-  static propTypes = {
-    jkey: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number
-    ]).isRequired,
-    propagateChanges: PropTypes.array.isRequired
-  };
+class KeyItem extends ValueItem {
 
   value() {
     return this.props.jkey;
@@ -42,5 +42,7 @@ class KeyItem extends ValueItem {
     }
   }
 }
+
+KeyItem.propTypes = propTypes;
 
 export default KeyItem;

@@ -5,17 +5,17 @@ import React, { PropTypes, Component } from 'react';
 import {render_item} from './Helpers'
 import AddButton from './AddButton'
 
-class Json extends Component {
+const propTypes = {
+  defaultValue: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object
+  ]).optional,
+  defaultKey: PropTypes.string.optional,
+  defaultJsonKey: PropTypes.string.optional,
+  propagateChanges: PropTypes.func.isRequired
+};
 
-  static propTypes = {
-    defaultValue: PropTypes.oneOfType([
-      PropTypes.array,
-      PropTypes.object
-    ]).optional,
-    defaultKey: PropTypes.string.optional,
-    defaultJsonKey: PropTypes.string.optional,
-    propagateChanges: PropTypes.func.isRequired
-  };
+class Json extends Component {
 
   constructor(props){
     super(props);
@@ -23,10 +23,12 @@ class Json extends Component {
       defaultValue: props.defaultValue || {},
       defaultKey: props.defaultKey || 'json.',
       defaultJsonKey: props.defaultJsonKey || 'root'
-    }
+    };
+
+    this.propagateChanges = this.propagateChanges.bind();
   }
 
-  propagateChanges = (change, key, value) => {
+  propagateChanges(change, key, value) {
     if (this.props.update) {
       this.props.update({doc: value});
     }
@@ -38,5 +40,7 @@ class Json extends Component {
     return <div className="root">{children}</div>
   }
 }
+
+Json.propType = propTypes;
 
 export default Json;

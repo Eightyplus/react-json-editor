@@ -3,13 +3,19 @@ import React, { PropTypes, Component } from 'react';
 import {render_item} from './Helpers'
 import AddButton from './AddButton'
 
+const propTypes = {
+  jkey: PropTypes.string.isRequired,
+  doc: PropTypes.array.isRequired,
+  propagateChanges: PropTypes.func.isRequired
+};
+
 class ArrayItem  extends Component {
 
-  static propTypes = {
-    jkey: PropTypes.string.isRequired,
-    doc: PropTypes.array.isRequired,
-    propagateChanges: PropTypes.func.isRequired
-  };
+  constructor(props) {
+    super(props);
+    this.addItem = this.addItem.bind();
+    this.propagateChanges = this.propagateChanges.bind();
+  }
 
   addButtonSetup() {
     return [
@@ -21,13 +27,13 @@ class ArrayItem  extends Component {
     ];
   }
 
-  addItem = (values) => {
+  addItem (values) {
     const doc = this.props.doc;
     doc.push(values[0]);
     this.props.propagateChanges('add', this.props.jkey, doc);
-  };
+  }
 
-  propagateChanges = (change, index, value) => {
+  propagateChanges (change, index, value) {
     const doc = this.props.doc;
     switch(change) {
       case 'delete':
@@ -40,7 +46,7 @@ class ArrayItem  extends Component {
     }
 
     this.props.propagateChanges('update', this.props.jkey, doc);
-  };
+  }
 
   render() {
     const items = this.props.doc.map(function(item, index) {
@@ -54,5 +60,7 @@ class ArrayItem  extends Component {
     </div>
   }
 }
+
+ArrayItem.propTypes = propTypes;
 
 export default ArrayItem;

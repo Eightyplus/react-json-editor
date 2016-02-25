@@ -2,6 +2,11 @@ import React, { PropTypes, Component } from 'react';
 
 import AddInput from './AddInput'
 
+const propTypes = {
+  onDone: PropTypes.func.isRequired,
+  setup: PropTypes.array.isRequired
+};
+
 class AddButton extends Component {
 
   constructor(props) {
@@ -9,19 +14,22 @@ class AddButton extends Component {
     this.state = {
       adding: false,
       values: []
-    }
+    };
+    this.add = this.add.bind();
+    this.next = this.next.bind();
+    this.onDone = this.onDone.bind();
+    this.onChange = this.onChange.bind();
+    this.cancel = this.cancel.bind();
+    this.save = this.save.bind();
+    
   }
 
-  static propTypes = {
-    onDone: PropTypes.func.isRequired,
-    setup: PropTypes.array.isRequired
-  };
 
-  add = () => {
+  add() {
     this.setState({adding: true});
   };
 
-  next = (index) => {
+  next(index) {
     /* TODO
      var child = this.refs['child' + index];
      if (!child) return;
@@ -30,7 +38,7 @@ class AddButton extends Component {
      */
   };
 
-  onDone = (index, value) => {
+  onDone(index, value) {
     this.onChange(index, value);
 
     if (index < this.props.setup.length - 1 ) {
@@ -40,17 +48,17 @@ class AddButton extends Component {
     }
   };
 
-  onChange = (index, value) => {
+  onChange(index, value) {
     const values = this.state.values;
     values[index] = value;
     this.setState({values: values})
   };
 
-  cancel = () => {
+  cancel() {
     this.setState({adding: false});
   };
 
-  save = () => {
+  save() {
     this.setState({adding: false});
     this.props.onDone(this.state.values);
   };
@@ -76,5 +84,7 @@ class AddButton extends Component {
     }
   }
 }
+
+AddButton.propTypes = propTypes;
 
 export default AddButton;

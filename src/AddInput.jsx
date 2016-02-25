@@ -2,6 +2,19 @@ import React, { PropTypes, Component } from 'react';
 
 import {is_container, get_options, text2value} from './Helpers'
 
+const propTypes = {
+  type: PropTypes.string.optional,
+  multiple: PropTypes.bool.isRequired,
+  defaultValue: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.bool
+  ]).optional,
+  placeholder: PropTypes.string.optional,
+  onChange: PropTypes.func.isRequired,
+  onDone: PropTypes.func.isRequired
+};
+
 class AddInput extends Component {
 
   constructor(props) {
@@ -10,21 +23,14 @@ class AddInput extends Component {
       type: props.type || 'string',
       value: props.value,
       show: true
-    }
+    };
+    this.onDone = this.onDone.bind();
+    this.handleInputChange = this.handleInputChange.bind();
+    this.handleSelectChange = this.handleSelectChange.bind();
+    this.checkEnter = this.checkEnter.bind();
+    this.finishEdit = this.finishEdit.bind();
+    this.finishEdit = this.finishEdit.bind();
   }
-
-  static propTypes = {
-    type: PropTypes.string.optional,
-    multiple: PropTypes.bool.isRequired,
-    defaultValue: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-      PropTypes.bool
-    ]).optional,
-    placeholder: PropTypes.string.optional,
-    onChange: PropTypes.func.isRequired,
-    onDone: PropTypes.func.isRequired
-  };
 
   select() {
     const input = get_options().map(function(option) {
@@ -63,13 +69,13 @@ class AddInput extends Component {
     </div>);
   }
 
-  handleInputChange = (event) => {
+  handleInputChange(event) {
     const value = text2value(this.state.type, event.target.value);
     this.props.onChange(this.props.index, value);
     this.setState({value: value});
-  };
+  }
 
-  handleSelectChange = (event) => {
+  handleSelectChange(event) {
     var options = event.target.options;
     var type = [];
     for (let i = 0; i < options.length; i++) {
@@ -83,23 +89,25 @@ class AddInput extends Component {
 
     this.setState({type: type, show: !isContainer});
     this.props.onChange(this.props.index, value);
-  };
+  }
 
-  checkEnter = (event) => {
+  checkEnter(event) {
     if(event.key === 'Enter') {
       this.finishEdit(event);
     }
-  };
+  }
 
-  finishEdit = (event) => {
+  finishEdit(event) {
     const value = text2value(this.state.type, event.target.value);
     this.props.onDone(this.props.index, value)
-  };
+  }
 
-  onDone = () => {
+  onDone() {
     const value = text2value(this.state.type, this.state.value);
     this.props.onDone(this.props.index, value)
   };
 }
+
+AddInput.propTypes = propTypes;
 
 export default AddInput;

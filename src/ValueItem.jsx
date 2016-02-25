@@ -2,39 +2,43 @@ import React, { PropTypes, Component } from 'react';
 
 import AddInput from './AddInput'
 
-class ValueItem extends Component {
+const propTypes = {
+  index: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]).isRequired,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.boolean
+  ]).optional,
+  propagateChanges: PropTypes.func.isRequired
+};
 
-  static propTypes = {
-    index: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number
-    ]).isRequired,
-    value: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-      PropTypes.boolean
-    ]).optional,
-    propagateChanges: PropTypes.func.isRequired
-  };
+class ValueItem extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
       editing: false
     };
+    this.onChange = this.onChange.bind();
+    this.onDone = this.onDone.bind();
+    this.onDelete = this.onDelete.bind();
+    this.activateEdit = this.activateEdit.bind();
   };
 
   getClass() {
     return typeof this.props.value;
   }
 
-  onChange = (index, value) => {
+  onChange(index, value) {
     // ignore
-  };
+  }
 
-  onDone = (index, value) => {
+  onDone(index, value) {
     this.propagateChanges(value)
-  };
+  }
 
   propagateChanges(value){
     this.setState({editing: false});
@@ -50,14 +54,14 @@ class ValueItem extends Component {
     }
   }
 
-  onDelete = (event) => {
+  onDelete(event) {
     event.stopPropagation();
     this.propagateDelete();
-  };
+  }
 
-  activateEdit = (event) => {
+  activateEdit(event) {
     this.setState({editing: true});
-  };
+  }
 
   value() {
     return this.props.value.toString();
@@ -93,5 +97,7 @@ class ValueItem extends Component {
     return this.state.editing ? this.renderEdit() : this.renderValue();
   }
 }
+
+ValueItem.propTypes = propTypes;
 
 export default ValueItem;

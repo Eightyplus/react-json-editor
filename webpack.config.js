@@ -29,9 +29,6 @@ module.exports = {
                 include: PATHS.src,
                 loader: 'babel',
                 plugins: ['transform-react'],
-                query: {
-                    presets: ['es2015', 'stage-0', 'react']
-                },
                 'env': {
                     'development': {
                         'plugins': [['react-transform', {
