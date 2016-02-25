@@ -1,4 +1,4 @@
-import './style.css';
+//TODO import './style.css';
 
 import React, { PropTypes, Component } from 'react';
 
