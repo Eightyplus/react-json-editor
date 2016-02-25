@@ -2,6 +2,7 @@
   "name": "react-json-edit",
   "version": "0.1.0",
   "description": "JSON Editor for React",
+  "main": "index.js",
   "scripts": {
     "build": "webpack --progress --colors",
     "test": "echo \"Error: no test specified\" && exit 0"

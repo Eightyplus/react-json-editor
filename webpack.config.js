@@ -2,7 +2,7 @@ const path = require('path');
 
 const PATHS = {
     src: path.join(__dirname, 'src'),
-    build: path.join(__dirname, 'build')
+    build: path.join(__dirname)
 };
 
 module.exports = {
@@ -14,7 +14,7 @@ module.exports = {
     },
     output: {
         path: PATHS.build,
-        filename: 'bundle.js'
+        filename: 'index.js'
     },
     module: {
         loaders: [
