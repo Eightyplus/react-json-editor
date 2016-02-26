@@ -27,8 +27,8 @@ class Json extends Component {
   }
 
   propagateChanges = (change, key, value) => {
-    if (this.props.update) {
-      this.props.update({json: value});
+    if (this.props.propagateChanges) {
+      this.props.propagateChanges({json: value});
     }
   };
 

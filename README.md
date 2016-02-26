@@ -23,14 +23,14 @@ class MyComponent extends Component {
     }
   }
   
-  update = (update) => {
-    this.setState({json: update.doc});
+  callback = (changes) => {
+    this.setState({json: changes.json});
   };
 
   render() {
     return (
       <div>
-        <Json json={this.state.json} update={this.update}/>
+        <Json json={this.state.json} propagateChanges={this.callback}/>
       </div>
     );
   }
@@ -56,7 +56,7 @@ load_callback(text) {
 render() {
   return (
    <div>
-     <Json json={this.state.json} update={this.update}/>
+     <Json json={this.state.json} propagateChanges={this.callback}/>
      <span>{this.state.message}</span>
    </div>
   );
