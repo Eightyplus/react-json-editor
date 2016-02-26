@@ -68,8 +68,9 @@ render() {
   - Isomorphic rendering of CSS
   - More different styles
   - Custom layout
-2. More setup options
+2. Test!
+3. More setup options
   - Number of levels
   - Configure add buttons
   - Schema for adding stuff
-3. Eventually built in text editor where result is parsed automatically
+4. Eventually built in text editor where result is parsed automatically
