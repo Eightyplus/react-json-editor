@@ -28,13 +28,13 @@ class Json extends Component {
 
   propagateChanges = (change, key, value) => {
     if (this.props.update) {
-      this.props.update({doc: value});
+      this.props.update({json: value});
     }
   };
 
   render() {
     const children = render_item(this.state.defaultKey, this.state.defaultJsonKey,
-      this.props.doc || this.state.defaultValue, this.propagateChanges);
+      this.props.json || this.state.defaultValue, this.propagateChanges);
     return <div className="root">{children}</div>
   }
 }

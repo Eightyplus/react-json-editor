@@ -24,13 +24,13 @@ class MyComponent extends Component {
   }
   
   update = (update) => {
-    this.setState({doc: update.doc});
+    this.setState({json: update.doc});
   };
 
   render() {
     return (
       <div>
-        <Json doc={this.state.json} update={this.update}/>
+        <Json json={this.state.json} update={this.update}/>
       </div>
     );
   }
