@@ -1,6 +1,8 @@
 # react-json-editor
 JSON editor for React
 
+# Install 
+[![NPM](https://nodei.co/npm/react-json-edit.png)](https://npmjs.org/package/react-json-edit)
 
 # How to use
 
