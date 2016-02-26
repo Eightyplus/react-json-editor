@@ -7,12 +7,13 @@ JSON editor for React
 # How to use
 
 * import Json component
+
 `import { Json } from 'react-json-edit';`
 
 * Add to render method and supply a callback method
 
 
-```
+```javascript
 class MyComponent extends Component {
 
   constructor(props) {
@@ -39,7 +40,7 @@ class MyComponent extends Component {
 # Parse
 It possible to parse and see errorMessage from parsing with the following helper method
 
-```
+```javascript
 import { parse } from 'react-json-edit';
 
 load_callback(text) {
