@@ -56,7 +56,7 @@ load_callback(text) {
 render() {
   return (
    <div>
-     <Json doc={this.state.json} update={this.update}/>
+     <Json json={this.state.json} update={this.update}/>
      <span>{this.state.message}</span>
    </div>
   );
