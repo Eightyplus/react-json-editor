@@ -14,7 +14,7 @@ class KeyItem extends ValueItem {
       PropTypes.string,
       PropTypes.number
     ]).isRequired,
-    propagateChanges: PropTypes.array.isRequired
+    propagateKeyChange: PropTypes.func.isRequired
   };
 
   value() {
