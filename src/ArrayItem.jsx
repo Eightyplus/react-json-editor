@@ -56,7 +56,7 @@ class ArrayItem  extends Component {
       return <div>{render_item(key, index, item, this.propagateChanges)},</div>
     }, this);
 
-    return <div className="array" style={this.getStyle()}>
+    return <div className="ArrayItem" style={this.getStyle()}>
       [{items}
       <AddButton key={this.props.jkey + ".add"} onDone={this.addItem} setup={this.addButtonSetup()} />]
     </div>

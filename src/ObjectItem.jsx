@@ -72,13 +72,13 @@ class ObjectItem extends Component {
   render() {
     const keys = Object.keys(this.props.doc);
     const rows = keys.map(function(jkey) {
-      return <div className="row" style={this.getRowStyle()}>
+      return <div className="ObjectRow" style={this.getRowStyle()}>
         <KeyItem key={this.props.jkey + ".key"} jkey={jkey} propagateKeyChange={this.propagateKeyChange} />
         {render_item(this.props.jkey +  jkey, jkey, this.props.doc[jkey], this.propagateChanges)},
       </div>
     }, this);
 
-    return (<div className="object" style={this.getStyle()}>{'{'}
+    return (<div className="ObjectItem" style={this.getStyle()}>{'{'}
       {rows}
       <AddButton key={this.props.jkey + ".add"} onDone={this.addItem} setup={this.addButtonSetup()} />
     {'}'}

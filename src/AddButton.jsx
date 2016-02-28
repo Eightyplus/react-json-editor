@@ -60,11 +60,11 @@ class AddButton extends Component {
   };
 
   getStyle() {
-    return this.context.styling['add']
+    return this.context.styling['add-group']
   }
 
-  getButtonStyle() {
-    return this.context.styling['button']
+  getButtonStyle(style) {
+    return this.context.styling[style]
   }
 
   input() {
@@ -73,10 +73,10 @@ class AddButton extends Component {
       return <AddInput index={index} onChange={this.onChange} onDone={this.onDone} {...settings}/>
     }, this);
 
-    return <div className="AddButton" style={this.getStyle()}>
+    return <div className='AddButton' style={this.getStyle()}>
       {inputs}
-      <button className="add-button" style={this.getButtonStyle()} onClick={this.save}>Save</button>
-      <button className="add-button" style={this.getButtonStyle()} onClick={this.cancel}>Cancel</button>
+      <button className='save-button' style={this.getButtonStyle('save-button')} onClick={this.save}>Save</button>
+      <button className='cancel-button' style={this.getButtonStyle('cancel-button')} onClick={this.cancel}>Cancel</button>
     </div>
   }
 
@@ -84,7 +84,7 @@ class AddButton extends Component {
     if (this.state.adding) {
       return this.input();
     } else {
-      return <button className="add-button" style={this.getButtonStyle()} onClick={this.add}>+</button>
+      return <button className='add-button' style={this.getButtonStyle('add-button')} onClick={this.add}>+</button>
     }
   }
 }

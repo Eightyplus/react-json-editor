@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import merge from 'merge';
 
+import { capitalize } from './Helpers'
 import AddInput from './AddInput'
 
 class ValueItem extends Component {
@@ -77,6 +78,10 @@ class ValueItem extends Component {
     return typeof this.props.value;
   }
 
+  getClassName() {
+    return capitalize(this.getClass()) + 'Item';
+  }
+
   getStyle() {
     if (this.context.styling.hasOwnProperty(this.getClass())) {
       const classStyling = this.context.styling[this.getClass()];
@@ -104,7 +109,7 @@ class ValueItem extends Component {
 
   renderValue(){
     return (
-      <div className={this.getClass()} style={this.getStyle()} onClick={this.activateEdit}
+      <div className={this.getClassName()} style={this.getStyle()} onClick={this.activateEdit}
       onMouseOver={this.mouseOver} onMouseOut={this.mouseOut}>
       <span>{this.value()}{this.getSuffix()}</span>
         {this.renderDelete()}
@@ -113,9 +118,9 @@ class ValueItem extends Component {
   }
 
   renderDelete() {
-    const style = {float: 'right', 'marginLeft': '0.5em'};
-    style['visibility'] = this.state.hover ? 'visible' : 'hidden';
-    return <button className="delete" onClick={this.onDelete} style={style}>{'\u232B'}</button>;
+    const visible = {'visibility': this.state.hover ? 'visible' : 'hidden'};
+    const style = merge(true, this.context.styling['delete-button'], visible) ;
+    return <button className='delete-button' onClick={this.onDelete} style={style}>{'\u232B'}</button>;
   }
 
   render() {

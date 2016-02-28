@@ -56,17 +56,21 @@ class AddInput extends Component {
   }
 
   doneButton() {
-    return <button className="add-button" onClick={this.onDone}>{'\u221A'}</button>
+    return <button className="add-button" style={this.getButtonStyle()} onClick={this.onDone}>{'\u221A'}</button>
   }
 
   getStyle() {
-    return this.context.styling['input'];
+    return this.context.styling['add-input'];
+  }
+
+  getButtonStyle() {
+    return this.context.styling['add-button'];
   }
 
   render() {
     const { multiple } = this.props;
 
-    return (<div>
+    return (<div className="AddInput">
       {multiple && this.select()}
       {this.state.show ? this.input() : this.doneButton()}
     </div>);

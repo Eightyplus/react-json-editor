@@ -41,13 +41,24 @@ const styling = {
   'null': {
     'color': 'firebrick'
   },
-  'button': {
+  'add-button': {
     'display': 'inline-block'
   },
-  'add': {
+  'save-button': {
+    'display': 'inline-block'
+  },
+  'cancel-button': {
+    'display': 'inline-block'
+  },
+  'delete-button': {
+    'float': 'right',
+    'marginLeft': '0.5em',
+    'display': 'inline-block'
+  },
+  'add-group': {
     'display': 'inline-flex'
   },
-  'input': {
+  'add-input': {
     'display': 'inline-block'
   }
 };
