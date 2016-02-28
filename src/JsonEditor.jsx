@@ -1,6 +1,7 @@
 //TODO import './style.css';
 
 import React, { PropTypes, Component } from 'react';
+import merge from 'merge';
 
 import {render_item} from './Helpers'
 import AddButton from './AddButton'
@@ -85,7 +86,7 @@ class JsonEditor extends Component {
       defaultValue: props.defaultValue || {},
       defaultKey: props.defaultKey || 'json.',
       defaultJsonKey: props.defaultJsonKey || 'root',
-      styling: props.styling || styling // TODO merge styles
+      styling: merge(styling, props.styling)
     };
   }
 
