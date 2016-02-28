@@ -63,7 +63,11 @@ export function value2text(value) {
   return value;
 }
 
-function add2text (text, index, add) {
+export function capitalize(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+export function add2text (text, index, add) {
   return text.substr(0, index) + add + text.substr(index);
 }
 
