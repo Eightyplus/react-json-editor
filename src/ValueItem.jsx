@@ -18,7 +18,7 @@ class ValueItem extends Component {
       PropTypes.string,
       PropTypes.number,
       PropTypes.boolean
-    ]).optional,
+    ]),
     propagateChanges: PropTypes.func.isRequired
   };
 

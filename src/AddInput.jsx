@@ -18,14 +18,14 @@ class AddInput extends Component {
   }
 
   static propTypes = {
-    type: PropTypes.string.optional,
+    type: PropTypes.string,
     multiple: PropTypes.bool.isRequired,
     defaultValue: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.number,
       PropTypes.bool
-    ]).optional,
-    placeholder: PropTypes.string.optional,
+    ]),
+    placeholder: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     onDone: PropTypes.func.isRequired
   };

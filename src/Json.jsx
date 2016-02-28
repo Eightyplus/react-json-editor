@@ -15,9 +15,9 @@ class Json extends Component {
     defaultValue: PropTypes.oneOfType([
       PropTypes.array,
       PropTypes.object
-    ]).optional,
-    defaultKey: PropTypes.string.optional,
-    defaultJsonKey: PropTypes.string.optional,
+    ]),
+    defaultKey: PropTypes.string,
+    defaultJsonKey: PropTypes.string,
     propagateChanges: PropTypes.func.isRequired
   };
 
