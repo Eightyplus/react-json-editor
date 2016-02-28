@@ -3,10 +3,6 @@ import merge from 'merge';
 
 import ValueItem from './ValueItem'
 
-const style = {
-  'fontFamily': 'bold'
-};
-
 class KeyItem extends ValueItem {
 
   static propTypes = {
@@ -27,10 +23,6 @@ class KeyItem extends ValueItem {
 
   getSuffix() {
     return ':';
-  }
-
-  getStyle() {
-    return merge(true, super.getStyle(), style);
   }
 
   editSettings() {

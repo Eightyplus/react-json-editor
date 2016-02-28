@@ -2,10 +2,6 @@ import React, { PropTypes, Component } from 'react';
 
 import {is_container, get_options, text2value} from './Helpers'
 
-const style = {
-  'display': 'inline-block'
-};
-
 class AddInput extends Component {
 
   constructor(props) {
@@ -30,6 +26,10 @@ class AddInput extends Component {
     onDone: PropTypes.func.isRequired
   };
 
+  static contextTypes = {
+    styling: React.PropTypes.object
+  };
+
   select() {
     const input = get_options().map(function(option) {
       return <option value={option}>{option}</option>
@@ -45,7 +45,7 @@ class AddInput extends Component {
   input() {
     const {defaultValue, placeholder} = this.props;
     return <input className='add-input'
-                  style={style}
+                  style={this.getStyle()}
                   type='text'
                   autoFocus={false}
                   defaultValue={defaultValue}
@@ -57,6 +57,10 @@ class AddInput extends Component {
 
   doneButton() {
     return <button className="add-button" onClick={this.onDone}>{'\u221A'}</button>
+  }
+
+  getStyle() {
+    return this.context.styling['input'];
   }
 
   render() {

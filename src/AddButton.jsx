@@ -2,14 +2,6 @@ import React, { PropTypes, Component } from 'react';
 
 import AddInput from './AddInput'
 
-const style = {
-  'display': 'inline-flex'
-};
-
-const buttonStyle = {
-  'display': 'inline-block'
-};
-
 class AddButton extends Component {
 
   constructor(props) {
@@ -23,6 +15,10 @@ class AddButton extends Component {
   static propTypes = {
     onDone: PropTypes.func.isRequired,
     setup: PropTypes.array.isRequired
+  };
+
+  static contextTypes = {
+    styling: React.PropTypes.object
   };
 
   add = () => {
@@ -63,16 +59,24 @@ class AddButton extends Component {
     this.props.onDone(this.state.values);
   };
 
+  getStyle() {
+    return this.context.styling['add']
+  }
+
+  getButtonStyle() {
+    return this.context.styling['button']
+  }
+
   input() {
     const {setup} = this.props;
     const inputs = setup.map(function(settings, index) {
       return <AddInput index={index} onChange={this.onChange} onDone={this.onDone} {...settings}/>
     }, this);
 
-    return <div className="AddButton" style={style}>
+    return <div className="AddButton" style={this.getStyle()}>
       {inputs}
-      <button className="add-button" style={buttonStyle} onClick={this.save}>Save</button>
-      <button className="add-button" style={buttonStyle} onClick={this.cancel}>Cancel</button>
+      <button className="add-button" style={this.getButtonStyle()} onClick={this.save}>Save</button>
+      <button className="add-button" style={this.getButtonStyle()} onClick={this.cancel}>Cancel</button>
     </div>
   }
 
@@ -80,7 +84,7 @@ class AddButton extends Component {
     if (this.state.adding) {
       return this.input();
     } else {
-      return <button className="add-button" style={buttonStyle} onClick={this.add}>+</button>
+      return <button className="add-button" style={this.getButtonStyle()} onClick={this.add}>+</button>
     }
   }
 }

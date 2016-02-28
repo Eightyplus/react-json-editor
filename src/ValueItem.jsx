@@ -1,13 +1,7 @@
 import React, { PropTypes, Component } from 'react';
-
-import AddInput from './AddInput'
-
 import merge from 'merge';
 
-const style = {
-  'display': 'inline-block',
-  'marginLeft': '0.1rem'
-};
+import AddInput from './AddInput'
 
 class ValueItem extends Component {
 
@@ -22,6 +16,10 @@ class ValueItem extends Component {
       PropTypes.boolean
     ]),
     propagateChanges: PropTypes.func.isRequired
+  };
+
+  static contextTypes = {
+    styling: React.PropTypes.object
   };
 
   constructor(props) {
@@ -80,25 +78,11 @@ class ValueItem extends Component {
   }
 
   getStyle() {
-    return merge(true, style, {color: this.getColor()});
-  }
-
-  getColor(type) {
-    switch (this.getClass()) {
-      case 'number':
-        return 'blue';
-      case 'boolean':
-        return 'red';
-      case 'null':
-        return 'red';
-        break;
-      case 'undefined':
-        return 'violet';
-      case 'string':
-        return 'green';
-      default:
-        return 'black';
+    if (this.context.styling.hasOwnProperty(this.getClass())) {
+      const classStyling = this.context.styling[this.getClass()];
+      return merge(true, this.context.styling['value'], classStyling);
     }
+    return this.context.styling['value'];
   }
 
   getSuffix() {

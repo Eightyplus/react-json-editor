@@ -3,11 +3,11 @@ import React, { PropTypes, Component } from 'react';
 import {render_item} from './Helpers'
 import AddButton from './AddButton'
 
-const style = {
-  'display': 'inline-table'
-};
-
 class ArrayItem  extends Component {
+
+  static contextTypes = {
+    styling: React.PropTypes.object
+  };
 
   static propTypes = {
     jkey: PropTypes.string.isRequired,
@@ -46,13 +46,17 @@ class ArrayItem  extends Component {
     this.props.propagateChanges('update', this.props.jkey, doc);
   };
 
+  getStyle() {
+    return this.context.styling['array'];
+  }
+
   render() {
     const items = this.props.doc.map(function(item, index) {
       const key = this.props.jkey + index;
       return <div>{render_item(key, index, item, this.propagateChanges)},</div>
     }, this);
 
-    return <div className="array" style={style}>
+    return <div className="array" style={this.getStyle()}>
       [{items}
       <AddButton key={this.props.jkey + ".add"} onDone={this.addItem} setup={this.addButtonSetup()} />]
     </div>

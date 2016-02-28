@@ -4,17 +4,11 @@ import {render_item} from './Helpers'
 import AddButton from './AddButton'
 import KeyItem from './KeyItem'
 
-const style = {
-  display: 'inline-table'
-};
-
-const rowStyle = {
-  display: 'block',
-  'marginLeft': '1rem'
-};
-
-
 class ObjectItem extends Component {
+
+  static contextTypes = {
+    styling: React.PropTypes.object
+  };
 
   addButtonSetup() {
     return [
@@ -67,16 +61,24 @@ class ObjectItem extends Component {
     this.props.propagateChanges('update', this.props.jkey, doc);
   };
 
+  getStyle() {
+    return this.context.styling['object'];
+  }
+
+  getRowStyle() {
+    return this.context.styling['row'];
+  }
+
   render() {
     const keys = Object.keys(this.props.doc);
     const rows = keys.map(function(jkey) {
-      return <div className="row" style={rowStyle}>
+      return <div className="row" style={this.getRowStyle()}>
         <KeyItem key={this.props.jkey + ".key"} jkey={jkey} propagateKeyChange={this.propagateKeyChange} />
         {render_item(this.props.jkey +  jkey, jkey, this.props.doc[jkey], this.propagateChanges)},
       </div>
     }, this);
 
-    return (<div className="object" style={style}>{'{'}
+    return (<div className="object" style={this.getStyle()}>{'{'}
       {rows}
       <AddButton key={this.props.jkey + ".add"} onDone={this.addItem} setup={this.addButtonSetup()} />
     {'}'}
