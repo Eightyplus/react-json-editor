@@ -18,15 +18,15 @@ const styling = {
   },
   'object-row': {
     display: 'block',
-    marginLeft: '1rem'
+    marginLeft: 1
   },
   'array-row': {
     display: 'block',
-    marginLeft: '1rem'
+    marginLeft: 1
   },
   value: {
     display: 'inline-block',
-    marginLeft: '0.1rem'
+    marginLeft: 0.1
   },
   key: {
     fontWeight: 'bold'
@@ -57,7 +57,7 @@ const styling = {
   },
   'delete-button': {
     float: 'right',
-    marginLeft: '0.5em',
+    marginLeft: 0.5,
     display: 'inline-block'
   },
   'add-group': {
