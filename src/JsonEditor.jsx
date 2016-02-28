@@ -52,7 +52,7 @@ const styling = {
   }
 };
 
-class Json extends Component {
+class JsonEditor extends Component {
 
   static propTypes = {
     defaultValue: PropTypes.oneOfType([
@@ -95,8 +95,8 @@ class Json extends Component {
   render() {
     const children = render_item(this.state.defaultKey, this.state.defaultJsonKey,
       this.props.json || this.state.defaultValue, this.propagateChanges);
-    return <div className="root" style={this.getStyle()}>{children}</div>
+    return <div className="JsonEditor" style={this.getStyle()}>{children}</div>
   }
 }
 
-export default Json;
+export default JsonEditor;

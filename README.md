@@ -6,9 +6,9 @@ JSON editor for React
 
 # How to use
 
-* import Json component
+* import JsonEditor component
 
-`import { Json } from 'react-json-edit';`
+`import { JsonEditor } from 'react-json-edit';`
 
 * Add to render method and supply a callback method
 
@@ -30,7 +30,7 @@ class MyComponent extends Component {
   render() {
     return (
       <div>
-        <Json json={this.state.json} propagateChanges={this.callback}/>
+        <JsonEditor json={this.state.json} propagateChanges={this.callback}/>
       </div>
     );
   }
@@ -56,7 +56,7 @@ load_callback(text) {
 render() {
   return (
    <div>
-     <Json json={this.state.json} propagateChanges={this.callback}/>
+     <JsonEditor json={this.state.json} propagateChanges={this.callback}/>
      <span>{this.state.message}</span>
    </div>
   );
