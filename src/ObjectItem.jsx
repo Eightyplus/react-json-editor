@@ -4,6 +4,16 @@ import {render_item} from './Helpers'
 import AddButton from './AddButton'
 import KeyItem from './KeyItem'
 
+const style = {
+  display: 'inline-table'
+};
+
+const rowStyle = {
+  display: 'block',
+  'marginLeft': '1rem'
+};
+
+
 class ObjectItem extends Component {
 
   addButtonSetup() {
@@ -60,15 +70,16 @@ class ObjectItem extends Component {
   render() {
     const keys = Object.keys(this.props.doc);
     const rows = keys.map(function(jkey) {
-      return <div className="row">
+      return <div className="row" style={rowStyle}>
         <KeyItem key={this.props.jkey + ".key"} jkey={jkey} propagateKeyChange={this.propagateKeyChange} />
-        {render_item(this.props.jkey +  jkey, jkey, this.props.doc[jkey], this.propagateChanges)}
+        {render_item(this.props.jkey +  jkey, jkey, this.props.doc[jkey], this.propagateChanges)},
       </div>
     }, this);
 
-    return (<div className="object">
+    return (<div className="object" style={style}>{'{'}
       {rows}
       <AddButton key={this.props.jkey + ".add"} onDone={this.addItem} setup={this.addButtonSetup()} />
+    {'}'}
     </div>);
   }
 }

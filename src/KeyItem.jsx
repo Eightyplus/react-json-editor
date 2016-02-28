@@ -1,6 +1,11 @@
 import React, { PropTypes, Component } from 'react';
+import merge from 'merge';
 
 import ValueItem from './ValueItem'
+
+const style = {
+  'fontFamily': 'bold'
+};
 
 class KeyItem extends ValueItem {
 
@@ -18,6 +23,14 @@ class KeyItem extends ValueItem {
 
   getClass() {
     return 'key';
+  }
+
+  getSuffix() {
+    return ':';
+  }
+
+  getStyle() {
+    return merge(true, super.getStyle(), style);
   }
 
   editSettings() {

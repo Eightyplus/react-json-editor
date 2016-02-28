@@ -2,6 +2,10 @@ import React, { PropTypes, Component } from 'react';
 
 import {is_container, get_options, text2value} from './Helpers'
 
+const style = {
+  'display': 'inline-block'
+};
+
 class AddInput extends Component {
 
   constructor(props) {
@@ -41,6 +45,7 @@ class AddInput extends Component {
   input() {
     const {defaultValue, placeholder} = this.props;
     return <input className='add-input'
+                  style={style}
                   type='text'
                   autoFocus={false}
                   defaultValue={defaultValue}

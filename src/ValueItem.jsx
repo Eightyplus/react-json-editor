@@ -2,6 +2,11 @@ import React, { PropTypes, Component } from 'react';
 
 import AddInput from './AddInput'
 
+const style = {
+  'display': 'inline-block',
+  'marginLeft': '0.1rem'
+};
+
 class ValueItem extends Component {
 
   static propTypes = {
@@ -20,13 +25,18 @@ class ValueItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      editing: false
+      editing: false,
+      hover: false
     };
   };
 
-  getClass() {
-    return typeof this.props.value;
-  }
+  mouseOver = () => {
+    this.setState({hover: true});
+  };
+
+  mouseOut = () => {
+    this.setState({hover: false});
+  };
 
   onChange = (index, value) => {
     // ignore
@@ -63,6 +73,18 @@ class ValueItem extends Component {
     return this.props.value.toString();
   }
 
+  getClass() {
+    return typeof this.props.value;
+  }
+
+  getStyle() {
+    return style;
+  }
+
+  getSuffix() {
+    return null;
+  }
+
   editSettings() {
     return {
       type: typeof this.props.value,
@@ -78,15 +100,18 @@ class ValueItem extends Component {
 
   renderValue(){
     return (
-      <div className={this.getClass()} onClick={this.activateEdit}>
-        <span>{this.value()}</span>
+      <div className={this.getClass()} style={this.getStyle()} onClick={this.activateEdit}
+      onMouseOver={this.mouseOver} onMouseOut={this.mouseOut}>
+      <span>{this.value()}{this.getSuffix()}</span>
         {this.renderDelete()}
       </div>
     );
   }
 
   renderDelete() {
-    return <button className="delete" onClick={this.onDelete}>{'\u232B'}</button>;
+    const style = {float: 'right', 'marginLeft': '0.5em'};
+    style['visibility'] = this.state.hover ? 'visible' : 'hidden';
+    return <button className="delete" onClick={this.onDelete} style={style}>{'\u232B'}</button>;
   }
 
   render() {

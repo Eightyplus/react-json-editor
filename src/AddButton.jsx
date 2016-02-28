@@ -2,6 +2,14 @@ import React, { PropTypes, Component } from 'react';
 
 import AddInput from './AddInput'
 
+const style = {
+  'display': 'inline-flex'
+};
+
+const buttonStyle = {
+  'display': 'inline-block'
+};
+
 class AddButton extends Component {
 
   constructor(props) {
@@ -61,10 +69,10 @@ class AddButton extends Component {
       return <AddInput index={index} onChange={this.onChange} onDone={this.onDone} {...settings}/>
     }, this);
 
-    return <div className="AddButton">
+    return <div className="AddButton" style={style}>
       {inputs}
-      <button className="add-button" onClick={this.save}>Save</button>
-      <button className="add-button" onClick={this.cancel}>Cancel</button>
+      <button className="add-button" style={buttonStyle} onClick={this.save}>Save</button>
+      <button className="add-button" style={buttonStyle} onClick={this.cancel}>Cancel</button>
     </div>
   }
 
@@ -72,7 +80,7 @@ class AddButton extends Component {
     if (this.state.adding) {
       return this.input();
     } else {
-      return <button className="add-button" onClick={this.add}>+</button>
+      return <button className="add-button" style={buttonStyle} onClick={this.add}>+</button>
     }
   }
 }

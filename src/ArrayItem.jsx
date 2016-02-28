@@ -3,6 +3,10 @@ import React, { PropTypes, Component } from 'react';
 import {render_item} from './Helpers'
 import AddButton from './AddButton'
 
+const style = {
+  'display': 'inline-table'
+};
+
 class ArrayItem  extends Component {
 
   static propTypes = {
@@ -45,12 +49,12 @@ class ArrayItem  extends Component {
   render() {
     const items = this.props.doc.map(function(item, index) {
       const key = this.props.jkey + index;
-      return <div>{render_item(key, index, item, this.propagateChanges)}</div>
+      return <div>{render_item(key, index, item, this.propagateChanges)},</div>
     }, this);
 
-    return <div className="array">
-      {items}
-      <AddButton key={this.props.jkey + ".add"} onDone={this.addItem} setup={this.addButtonSetup()} />
+    return <div className="array" style={style}>
+      [{items}
+      <AddButton key={this.props.jkey + ".add"} onDone={this.addItem} setup={this.addButtonSetup()} />]
     </div>
   }
 }

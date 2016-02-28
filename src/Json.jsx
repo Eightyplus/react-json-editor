@@ -5,6 +5,10 @@ import React, { PropTypes, Component } from 'react';
 import {render_item} from './Helpers'
 import AddButton from './AddButton'
 
+const style = {
+  'clear': 'left'
+};
+
 class Json extends Component {
 
   static propTypes = {
@@ -35,7 +39,7 @@ class Json extends Component {
   render() {
     const children = render_item(this.state.defaultKey, this.state.defaultJsonKey,
       this.props.json || this.state.defaultValue, this.propagateChanges);
-    return <div className="root">{children}</div>
+    return <div className="root" style={style}>{children}</div>
   }
 }
 
