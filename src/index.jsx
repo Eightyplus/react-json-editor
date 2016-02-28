@@ -1,5 +1,5 @@
 
-export { default as Json } from './Json';
+export { default as JsonEditor } from './JsonEditor';
 
 if (process.env.NODE_ENV !== 'production') {
   Object.defineProperty(exports, 'default', {
