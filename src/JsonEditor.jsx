@@ -7,60 +7,64 @@ import {render_item} from './Helpers'
 import AddButton from './AddButton'
 
 const styling = {
-  'root': {
-    'clear': 'left'
+  root: {
+    clear: 'left'
   },
-  'array': {
-    'display': 'inline-table'
+  array: {
+    display: 'inline-table'
   },
-  'object': {
-    'display': 'inline-table'
+  object: {
+    display: 'inline-table'
   },
-  'row': {
-    'display': 'block',
-    'marginLeft': '1rem'
+  'object-row': {
+    display: 'block',
+    marginLeft: '1rem'
   },
-  'value': {
-    'display': 'inline-block',
-    'marginLeft': '0.1rem'
+  'array-row': {
+    display: 'block',
+    marginLeft: '1rem'
   },
-  'key': {
-      'fontFamily': 'bold'
+  value: {
+    display: 'inline-block',
+    marginLeft: '0.1rem'
   },
-  'string': {
-    'color': 'green'
+  key: {
+    fontWeight: 'bold'
   },
-  'number': {
-    'color': 'blue'
+  string: {
+    color: 'green'
+  },
+  number: {
+    color: 'blue'
   },
   'undefined': {
-    'color': 'violet'
+    color: 'violet'
   },
-  'boolean': {
-    'color': 'red'
+  boolean: {
+    color: 'red'
   },
   'null': {
-    'color': 'firebrick'
+    color: 'firebrick'
   },
   'add-button': {
-    'display': 'inline-block'
+    display: 'inline-block'
   },
   'save-button': {
-    'display': 'inline-block'
+    display: 'inline-block'
   },
   'cancel-button': {
-    'display': 'inline-block'
+    display: 'inline-block'
   },
   'delete-button': {
-    'float': 'right',
-    'marginLeft': '0.5em',
-    'display': 'inline-block'
+    float: 'right',
+    marginLeft: '0.5em',
+    display: 'inline-block'
   },
   'add-group': {
-    'display': 'inline-flex'
+    display: 'inline-flex'
   },
   'add-input': {
-    'display': 'inline-block'
+    display: 'inline-block'
   }
 };
 

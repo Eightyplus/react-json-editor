@@ -66,7 +66,7 @@ class ObjectItem extends Component {
   }
 
   getRowStyle() {
-    return this.context.styling['row'];
+    return this.context.styling['object-row'];
   }
 
   render() {

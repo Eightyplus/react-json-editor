@@ -50,10 +50,14 @@ class ArrayItem  extends Component {
     return this.context.styling['array'];
   }
 
+  getRowStyle() {
+    return this.context.styling['array-row'];
+  }
+
   render() {
     const items = this.props.doc.map(function(item, index) {
       const key = this.props.jkey + index;
-      return <div>{render_item(key, index, item, this.propagateChanges)},</div>
+      return <div className='ArrayRow' style={this.getRowStyle()}>{render_item(key, index, item, this.propagateChanges)},</div>
     }, this);
 
     return <div className="ArrayItem" style={this.getStyle()}>
