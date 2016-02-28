@@ -4,14 +4,6 @@ import AddInput from './AddInput'
 
 class AddButton extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      adding: false,
-      values: []
-    }
-  }
-
   static propTypes = {
     onDone: PropTypes.func.isRequired,
     setup: PropTypes.array.isRequired
@@ -20,6 +12,14 @@ class AddButton extends Component {
   static contextTypes = {
     styling: React.PropTypes.object
   };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      adding: false,
+      values: []
+    }
+  }
 
   add = () => {
     this.setState({adding: true});

@@ -4,15 +4,6 @@ import {is_container, get_options, text2value} from './Helpers'
 
 class AddInput extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      type: props.type || 'string',
-      value: props.value,
-      show: true
-    }
-  }
-
   static propTypes = {
     type: PropTypes.string,
     multiple: PropTypes.bool.isRequired,
@@ -29,6 +20,15 @@ class AddInput extends Component {
   static contextTypes = {
     styling: React.PropTypes.object
   };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      type: props.type || 'string',
+      value: props.value,
+      show: true
+    }
+  }
 
   select() {
     const input = get_options().map(function(option) {
