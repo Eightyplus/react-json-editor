@@ -3,7 +3,7 @@
 import React, { PropTypes, Component } from 'react';
 import merge from 'merge';
 
-import {render_item} from './Helpers'
+import {render_item} from './../tools/Helpers'
 import AddButton from './AddButton'
 
 const styling = {
@@ -68,6 +68,26 @@ const styling = {
   }
 };
 
+function setupStyle(props) {
+  const changes = (props.tableLike) ? {
+    array: {
+      border: '1px solid #414141'
+    },
+    object: {
+      border: '1px solid #414141'
+    },
+    'array-row': {
+      display: 'table-cell',
+      borderRight: '1px solid #414141'
+    },
+    'object-row': {
+      borderBottom: '1px solid #414141'
+    }
+  } : {};
+
+  return merge(merge(styling, changes), props.styling);
+}
+
 class JsonEditor extends Component {
 
   static propTypes = {
@@ -90,7 +110,7 @@ class JsonEditor extends Component {
       defaultValue: props.defaultValue || {},
       defaultKey: props.defaultKey || 'json.',
       defaultJsonKey: props.defaultJsonKey || 'root',
-      styling: merge(styling, props.styling)
+      styling: setupStyle(props)
     };
   }
 

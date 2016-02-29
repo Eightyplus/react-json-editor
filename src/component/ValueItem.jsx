@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import merge from 'merge';
 
-import { capitalize } from './Helpers'
+import { capitalize } from './../tools/Helpers'
 import AddInput from './AddInput'
 
 class ValueItem extends Component {

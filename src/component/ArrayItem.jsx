@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 
-import {render_item} from './Helpers'
+import {render_item} from './../tools/Helpers'
 import AddButton from './AddButton'
 
 class ArrayItem  extends Component {

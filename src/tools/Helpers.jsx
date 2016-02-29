@@ -1,8 +1,8 @@
 import React from 'react';
 
-import ArrayItem from './ArrayItem'
-import ObjectItem from './ObjectItem'
-import ValueItem from './ValueItem'
+import ArrayItem from './../component/ArrayItem'
+import ObjectItem from './../component/ObjectItem'
+import ValueItem from './../component/ValueItem'
 
 // how to import:
 // import { render_item, get_options, is_container, text2value, value2text } from 'Helpers';
