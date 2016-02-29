@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --progress --colors --display-error-details",
+    "start": "webpack-dev-server",
+    "buildtest": "webpack && webpack-dev-server",
     "test": "echo \"Error: no test specified\" && exit 0"
   },
   "repository": {
@@ -34,7 +36,10 @@
     "babel-preset-stage-0": "^6.5.0",
     "css-loader": "^0.23.1",
     "merge": "^1.2.0",
-    "webpack": "^1.12.12"
+    "npm-install-webpack-plugin": "^2.0.2",
+    "react-dom": "^0.14.7",
+    "webpack": "^1.12.12",
+    "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
     "react": "^0.14.7"
