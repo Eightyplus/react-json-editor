@@ -2,3 +2,5 @@
 *.jsx
 webpack.config.js
 entry.js
+build
+app
