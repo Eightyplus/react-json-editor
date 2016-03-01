@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --progress --colors --display-error-details",
-    "buildtest": "webpack && webpack-dev-server",
     "clean": "rm index.js build/index.js",
+    "dev": "webpack && webpack-dev-server",
     "start": "webpack-dev-server",
     "test": "echo \"Error: no test specified\" && exit 0"
   },

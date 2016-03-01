@@ -53,7 +53,7 @@ if(TARGET === 'build') {
   };
 }
 
-if(TARGET === 'buildtest') {
+if(TARGET === 'dev') {
   module.exports = {
     entry: {
       app: path.join(__dirname, 'app')
