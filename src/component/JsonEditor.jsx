@@ -109,7 +109,8 @@ class JsonEditor extends Component {
       defaultValue: props.defaultValue || {},
       defaultKey: props.defaultKey || 'json.',
       defaultJsonKey: props.defaultJsonKey || 'root',
-      styling: setupStyle(props)
+      styling: setupStyle(props),
+      json: props.json
     };
   }
 
@@ -121,6 +122,7 @@ class JsonEditor extends Component {
   }
 
   propagateChanges = (change, key, value) => {
+    this.setState({json: value});
     if (this.props.propagateChanges) {
       this.props.propagateChanges({json: value});
     }
@@ -132,7 +134,7 @@ class JsonEditor extends Component {
 
   render() {
     const children = render_item(this.state.defaultKey, this.state.defaultJsonKey,
-      this.props.json || this.state.defaultValue, this.propagateChanges, true);
+      this.state.json || this.state.defaultValue, this.propagateChanges, true);
     return <div className="JsonEditor" style={this.getStyle()}>{children}</div>
   }
 }
