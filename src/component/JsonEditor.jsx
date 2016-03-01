@@ -101,7 +101,7 @@ class JsonEditor extends Component {
   };
 
   static childContextTypes = {
-    styling: React.PropTypes.object
+    styling: PropTypes.object
   };
 
   constructor(props){

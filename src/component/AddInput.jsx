@@ -18,7 +18,7 @@ class AddInput extends Component {
   };
 
   static contextTypes = {
-    styling: React.PropTypes.object
+    styling: PropTypes.object
   };
 
   constructor(props) {

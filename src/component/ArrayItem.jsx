@@ -6,7 +6,7 @@ import AddButton from './AddButton'
 class ArrayItem  extends Component {
 
   static contextTypes = {
-    styling: React.PropTypes.object
+    styling: PropTypes.object
   };
 
   static propTypes = {

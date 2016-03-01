@@ -7,7 +7,7 @@ import KeyItem from './KeyItem'
 class ObjectItem extends Component {
 
   static contextTypes = {
-    styling: React.PropTypes.object
+    styling: PropTypes.object
   };
 
   addButtonSetup() {
