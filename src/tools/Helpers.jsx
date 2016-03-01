@@ -8,13 +8,13 @@ import ValueItem from './../component/ValueItem'
 // import { render_item, get_options, is_container, text2value, value2text } from 'Helpers';
 
 
-export function render_item(key, jkey, value, propagateChanges) {
+export function render_item(key, jkey, value, propagateChanges, isLast) {
   if (value instanceof Array) {
     return <ArrayItem key={key} jkey={jkey} doc={value} propagateChanges={propagateChanges}/>;
   } else if (value instanceof Object) {
     return <ObjectItem key={key} jkey={jkey} doc={value} propagateChanges={propagateChanges}/>
   } else {
-    return <ValueItem key={key} index={jkey} value={value} propagateChanges={propagateChanges} />;
+    return <ValueItem key={key} index={jkey} value={value} isLast={isLast} propagateChanges={propagateChanges} />;
   }
 }
 
