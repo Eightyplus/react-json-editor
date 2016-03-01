@@ -32,7 +32,7 @@ class App extends Component{
           <button onClick={this.loadJson}>Load typed json</button>
           {this.state.errorText && <div>{this.state.errorText}</div>}
         </div>
-        <JsonEditor json={this.state.json} propagateChanges={this.update}/>
+        <JsonEditor json={this.state.json} tableLike={true} propagateChanges={this.update}/>
       </div>
     );
   }
