@@ -16,11 +16,13 @@ class ValueItem extends Component {
       PropTypes.number,
       PropTypes.boolean
     ]),
+    isLast: PropTypes.boolean,
     propagateChanges: PropTypes.func.isRequired
   };
 
   static contextTypes = {
-    styling: PropTypes.object
+    styling: PropTypes.object,
+    setup: PropTypes.object
   };
 
   constructor(props) {
@@ -91,7 +93,7 @@ class ValueItem extends Component {
   }
 
   getSuffix() {
-    return null;
+    return this.props.isLast ? null : ',';
   }
 
   editSettings() {
@@ -107,11 +109,15 @@ class ValueItem extends Component {
     return <AddInput index={0} autoFocus={false} onChange={this.onChange} onDone={this.onDone} {...settings}/>
   }
 
+  renderInnerValue() {
+    return <span>{this.value()}{this.context.setup.tableLike ? null : this.getSuffix()}</span>
+  }
+
   renderValue(){
     return (
       <div className={this.getClassName()} style={this.getStyle()} onClick={this.activateEdit}
       onMouseOver={this.mouseOver} onMouseOut={this.mouseOut}>
-      <span>{this.value()}{this.getSuffix()}</span>
+        {this.renderInnerValue()}
         {this.renderDelete()}
       </div>
     );

@@ -7,7 +7,8 @@ import KeyItem from './KeyItem'
 class ObjectItem extends Component {
 
   static contextTypes = {
-    styling: PropTypes.object
+    styling: PropTypes.object,
+    setup: PropTypes.object
   };
 
   addButtonSetup() {
@@ -71,17 +72,20 @@ class ObjectItem extends Component {
 
   render() {
     const keys = Object.keys(this.props.doc);
-    const rows = keys.map(function(jkey) {
+    const rows = keys.map(function(jkey, index) {
+      const isLast = index == keys.length - 1;
+
       return <div className="ObjectRow" style={this.getRowStyle()}>
         <KeyItem key={this.props.jkey + ".key"} jkey={jkey} propagateKeyChange={this.propagateKeyChange} />
-        {render_item(this.props.jkey +  jkey, jkey, this.props.doc[jkey], this.propagateChanges)},
+        {render_item(this.props.jkey +  jkey, jkey, this.props.doc[jkey], this.propagateChanges, isLast)}
       </div>
     }, this);
 
-    return (<div className="ObjectItem" style={this.getStyle()}>{'{'}
+    return (<div className="ObjectItem" style={this.getStyle()}>
+      {this.context.setup.tableLike ? null : '{'}
       {rows}
       <AddButton key={this.props.jkey + ".add"} onDone={this.addItem} setup={this.addButtonSetup()} />
-    {'}'}
+      {this.context.setup.tableLike ? null : '}'}
     </div>);
   }
 }

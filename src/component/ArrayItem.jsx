@@ -6,7 +6,8 @@ import AddButton from './AddButton'
 class ArrayItem  extends Component {
 
   static contextTypes = {
-    styling: PropTypes.object
+    styling: PropTypes.object,
+    setup: PropTypes.object
   };
 
   static propTypes = {
@@ -55,14 +56,19 @@ class ArrayItem  extends Component {
   }
 
   render() {
+    const lastIndex = this.props.doc.length - 1;
     const items = this.props.doc.map(function(item, index) {
       const key = this.props.jkey + index;
-      return <div className='ArrayRow' style={this.getRowStyle()}>{render_item(key, index, item, this.propagateChanges)},</div>
+      return(<div className='ArrayRow' style={this.getRowStyle()}>
+        {render_item(key, index, item, this.propagateChanges, index == lastIndex)}
+      </div> );
     }, this);
 
     return <div className="ArrayItem" style={this.getStyle()}>
-      [{items}
-      <AddButton key={this.props.jkey + ".add"} onDone={this.addItem} setup={this.addButtonSetup()} />]
+      {this.context.setup.tableLike ? null : '[' }
+      {items}
+      <AddButton key={this.props.jkey + ".add"} onDone={this.addItem} setup={this.addButtonSetup()} />
+      {this.context.setup.tableLike ? null : ']' }
     </div>
   }
 }

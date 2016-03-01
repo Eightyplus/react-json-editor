@@ -1,5 +1,3 @@
-//TODO import './style.css';
-
 import React, { PropTypes, Component } from 'react';
 import merge from 'merge';
 
@@ -101,7 +99,8 @@ class JsonEditor extends Component {
   };
 
   static childContextTypes = {
-    styling: PropTypes.object
+    styling: PropTypes.object,
+    setup: PropTypes.object
   };
 
   constructor(props){
@@ -115,7 +114,10 @@ class JsonEditor extends Component {
   }
 
   getChildContext() {
-    return {styling: this.state.styling};
+    return {
+      styling: this.state.styling,
+      setup: {tableLike: this.props.tableLike}
+    };
   }
 
   propagateChanges = (change, key, value) => {
@@ -130,7 +132,7 @@ class JsonEditor extends Component {
 
   render() {
     const children = render_item(this.state.defaultKey, this.state.defaultJsonKey,
-      this.props.json || this.state.defaultValue, this.propagateChanges);
+      this.props.json || this.state.defaultValue, true, this.propagateChanges);
     return <div className="JsonEditor" style={this.getStyle()}>{children}</div>
   }
 }
