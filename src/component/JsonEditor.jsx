@@ -132,7 +132,7 @@ class JsonEditor extends Component {
 
   render() {
     const children = render_item(this.state.defaultKey, this.state.defaultJsonKey,
-      this.props.json || this.state.defaultValue, true, this.propagateChanges);
+      this.props.json || this.state.defaultValue, this.propagateChanges, true);
     return <div className="JsonEditor" style={this.getStyle()}>{children}</div>
   }
 }
