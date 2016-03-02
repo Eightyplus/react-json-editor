@@ -22,17 +22,22 @@ class App extends Component{
     this.setState(parse(this.state.text))
   };
 
+  update = (json) => {
+    this.setState({json: json, text: JSON.stringify(json)})
+  };
+
   render () {
     return (
       <div>
         <div>
           <textarea type="text"
+                    value={this.state.text}
                     placeholder="Paste json here"
                     onChange={this.onTextAreaChange}/>
           <button onClick={this.loadJson}>Load typed json</button>
           {this.state.errorText && <div>{this.state.errorText}</div>}
         </div>
-        <JsonEditor json={this.state.json} tableLike={true} propagateChanges={this.update}/>
+        <JsonEditor value={this.state.json} tableLike={true} propagateChanges={this.update}/>
       </div>
     );
   }

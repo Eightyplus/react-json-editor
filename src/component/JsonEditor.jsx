@@ -116,6 +116,10 @@ class JsonEditor extends Component {
       PropTypes.array,
       PropTypes.object
     ]),
+    value: PropTypes.oneOfType([
+      PropTypes.array,
+      PropTypes.object
+    ]),
     defaultKey: PropTypes.string,
     defaultJsonKey: PropTypes.string,
     propagateChanges: PropTypes.func.isRequired
@@ -129,11 +133,9 @@ class JsonEditor extends Component {
   constructor(props){
     super(props);
     this.state = {
-      defaultValue: props.defaultValue || {},
       defaultKey: props.defaultKey || 'json.',
       defaultJsonKey: props.defaultJsonKey || 'root',
-      styling: setupStyle(props),
-      json: props.json
+      styling: setupStyle(props)
     };
   }
 
@@ -145,9 +147,9 @@ class JsonEditor extends Component {
   }
 
   propagateChanges = (change, key, value) => {
-    this.setState({json: value});
+    this.setState({value: value});
     if (this.props.propagateChanges) {
-      this.props.propagateChanges({json: value});
+      this.props.propagateChanges(value);
     }
   };
 
@@ -156,8 +158,8 @@ class JsonEditor extends Component {
   }
 
   render() {
-    const children = render_item(this.state.defaultKey, this.state.defaultJsonKey,
-      this.state.json || this.state.defaultValue, this.propagateChanges, true);
+    const value = this.props.value || this.props.defaultValue || {};
+    const children = render_item(this.state.defaultKey, this.state.defaultJsonKey, value, this.propagateChanges);
     return <div className="JsonEditor" style={this.getStyle()}>{children}</div>
   }
 }

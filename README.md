@@ -30,7 +30,7 @@ class MyComponent extends Component {
   render() {
     return (
       <div>
-        <JsonEditor json={this.state.json} propagateChanges={this.callback}/>
+        <JsonEditor value={this.state.json} propagateChanges={this.callback}/>
       </div>
     );
   }
@@ -56,7 +56,7 @@ load_callback(text) {
 render() {
   return (
    <div>
-     <JsonEditor json={this.state.json} propagateChanges={this.callback}/>
+     <JsonEditor value={this.state.json} propagateChanges={this.callback}/>
      <span>{this.state.message}</span>
    </div>
   );
@@ -83,7 +83,7 @@ Add props `tableLike={true}` to view json in a table.
   render() {
     return (
       <div>
-        <JsonEditor json={this.state.json} tableLike={true} propagateChanges={this.callback}/>
+        <JsonEditor value={this.state.json} tableLike={true} propagateChanges={this.callback}/>
       </div>
     );
   }
