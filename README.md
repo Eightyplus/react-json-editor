@@ -67,7 +67,7 @@ render() {
 I decided to use inline styling, due to troubles with Isomorphic rendering. The styling can be changed with a props on JsonEditor or via css.
 
 `<JsonEditor styling={ ... object }`
-where the following keys can be set: `root, array, object, object-row, array-row, value, key, string, number, undefined, boolean, null, button, add-group, add-input, add-button, save-button, cancel-button, delete-button`.
+where the following keys can be set: `root, array, object, object-row, array-row, value, key, string, number, undefined, boolean, null, button, add-group (AddButton), add-input, add-button, save-button, cancel-button, delete-button`.
 Remember that React uses different style names than css does.
 
 or the css class names (which trumps inline style!):
@@ -76,11 +76,25 @@ or the css class names (which trumps inline style!):
 Editor elements:
 `AddButton, AddInput, add-input, add-button, save-button, cancel-button, delete-button,`
 
+# Table like style
+Add props tableLike=true to view json in a table.
+
+```javascript
+  render() {
+    return (
+      <div>
+        <JsonEditor json={this.state.json} tableLike={true} propagateChanges={this.callback}/>
+      </div>
+    );
+  }
+```
 
 # TODO
-1. Style:
-  - alternative styles (table style)
-  - merge styling (missing elements)!
+1. Add:
+  - Whitespace
+  - Value
+  - null
+  - undefined
 2. Test!
 3. More setup options
   - Number of levels
