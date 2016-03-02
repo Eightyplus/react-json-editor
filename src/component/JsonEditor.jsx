@@ -73,7 +73,7 @@ function setupStyle(props) {
     root: {
       display: 'table',
       border: border,
-      'border-collapse': 'collapse'
+      borderCollapse: 'collapse'
     },
     array: {
       display: 'table-cell',
