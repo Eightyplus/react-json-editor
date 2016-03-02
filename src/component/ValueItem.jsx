@@ -14,9 +14,9 @@ class ValueItem extends Component {
     value: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.number,
-      PropTypes.boolean
+      PropTypes.bool
     ]),
-    isLast: PropTypes.boolean,
+    isLast: PropTypes.bool,
     propagateChanges: PropTypes.func.isRequired
   };
 
