@@ -68,7 +68,7 @@ class ArrayItem  extends Component {
       {this.context.setup.tableLike ? null : '[' }
       {items}
       <div className='ArrayRow' style={this.getRowStyle()}>
-        <AddButton key={this.props.jkey + ".add"} onDone={this.addItem} setup={this.addButtonSetup()} />
+        <AddButton onDone={this.addItem} setup={this.addButtonSetup()} />
       </div>
       {this.context.setup.tableLike ? null : ']' }
     </div>
