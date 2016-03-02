@@ -33,7 +33,7 @@ class AddInput extends Component {
 
   select() {
     const input = get_options().map(function(option) {
-      return <option value={option}>{option}</option>
+      return <option key={option} value={option}>{option}</option>
     }, this);
     return (
       <select onChange={this.handleSelectChange}
