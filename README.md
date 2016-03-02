@@ -90,14 +90,9 @@ Add props `tableLike={true}` to view json in a table.
 ```
 
 # TODO
-1. Add:
-  - Whitespace
-  - Value
-  - null
-  - undefined
-2. Test!
-3. More setup options
+1. Test!
+2. More setup options
   - Number of levels
   - Configure add buttons
   - Schema for adding stuff
-4. Eventually built in text editor where result is parsed automatically
+3. Eventually built in text editor where result is parsed automatically

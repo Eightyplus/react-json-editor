@@ -73,10 +73,16 @@ class ValueItem extends Component {
   };
 
   value() {
+    if (this.props.value === null) {
+      return 'null';
+    }
     return this.props.value.toString();
   }
 
   getClass() {
+    if (this.props.value === null) {
+      return 'null';
+    }
     return typeof this.props.value;
   }
 
@@ -98,7 +104,7 @@ class ValueItem extends Component {
 
   editSettings() {
     return {
-      type: typeof this.props.value,
+      type: this.getClass(),
       defaultValue: this.props.value,
       multiple: true
     };

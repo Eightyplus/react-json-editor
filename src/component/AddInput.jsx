@@ -23,10 +23,11 @@ class AddInput extends Component {
 
   constructor(props) {
     super(props);
+    const type = props.type || 'string';
     this.state = {
-      type: props.type || 'string',
+      type: type,
       value: props.value,
-      show: true
+      show: !is_container(type)
     }
   }
 

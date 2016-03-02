@@ -24,6 +24,7 @@ const styling = {
   },
   value: {
     display: 'inline-block',
+    minWidth: 10,
     marginLeft: 0.1
   },
   key: {

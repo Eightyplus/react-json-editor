@@ -5,7 +5,7 @@ import ObjectItem from './../component/ObjectItem'
 import ValueItem from './../component/ValueItem'
 
 // how to import:
-// import { render_item, get_options, is_container, text2value, value2text } from 'Helpers';
+// import { render_item, get_options, is_container, text2value } from 'Helpers';
 
 
 export function render_item(key, jkey, value, propagateChanges, isLast) {
@@ -19,13 +19,15 @@ export function render_item(key, jkey, value, propagateChanges, isLast) {
 }
 
 export function get_options() {
-  return ['string', 'number', 'boolean', 'object', 'array']; // TODO Value, Whitespace, null
+  return ['string', 'number', 'boolean', 'object', 'array', 'whitespace', 'null']
 }
 
 export function is_container(type) {
   switch (type) {
     case 'array':
     case 'object':
+    case 'null':
+    case 'whitespace':
       return true;
     default:
       return false;
@@ -43,24 +45,14 @@ export function text2value(type, value) {
       return [];
     case 'object':
       return {};
+    case 'null':
+      return null;
+    case 'whitespace':
+      return ' ';
     case 'string':
     default:
       return value;
   }
-}
-
-export function value2text(value) {
-  const type = typeof value;
-  switch(type) {
-    case 'boolean':
-    case 'number':
-      value = value.toString();
-      break;
-    case 'undefined':
-      value = undefined;
-      break;
-  }
-  return value;
 }
 
 export function capitalize(string) {
