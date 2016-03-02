@@ -70,7 +70,7 @@ class AddButton extends Component {
   input() {
     const {setup} = this.props;
     const inputs = setup.map(function(settings, index) {
-      return <AddInput index={index} onChange={this.onChange} onDone={this.onDone} {...settings}/>
+      return <AddInput key={'ab' + index} index={index} onChange={this.onChange} onDone={this.onDone} {...settings}/>
     }, this);
 
     return <div className='AddButton' style={this.getStyle()}>
