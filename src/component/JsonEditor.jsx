@@ -69,29 +69,36 @@ const styling = {
 function setupStyle(props) {
   const border = props.border || '1px solid #414141';
   const changes = (props.tableLike) ? {
+    root: {
+      display: 'table',
+      border: border,
+      'border-collapse': 'collapse'
+    },
     array: {
       display: 'table-cell',
       border: border
     },
     object: {
-      display: 'table',
-      border: border,
-      'border-collapse': 'collapse'
-    },
-    'array-row': {
       display: 'table-cell',
       border: border
     },
+    'array-row': {
+      display: 'table-cell',
+      border: border,
+      marginLeft: 0
+    },
     'object-row': {
       display: 'table-row',
-      border: border
+      border: border,
+      marginLeft: 0
     },
     key: {
+      display: 'table-cell',
       border: border
     },
     value: {
       display: 'table-cell',
-      marginLeft: 0.1
+      marginLeft: 0
     },
     'add-button': {
       display: 'table-cell'
