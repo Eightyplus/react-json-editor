@@ -77,7 +77,7 @@ Editor elements:
 `AddButton, AddInput, add-input, add-button, save-button, cancel-button, delete-button,`
 
 # Table like style
-Add props tableLike=true to view json in a table.
+Add props `tableLike={true}` to view json in a table.
 
 ```javascript
   render() {
