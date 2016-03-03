@@ -1,5 +1,6 @@
 
 export { default as JsonEditor } from './component/JsonEditor';
+export { parse } from './tools/Helpers';
 
 if (process.env.NODE_ENV !== 'production') {
   Object.defineProperty(exports, 'default', {
