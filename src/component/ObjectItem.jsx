@@ -11,6 +11,12 @@ class ObjectItem extends Component {
     setup: PropTypes.object
   };
 
+  static propTypes = {
+    jkey: PropTypes.string.isRequired,
+    doc: PropTypes.array.isRequired,
+    propagateChanges: PropTypes.func.isRequired
+  };
+
   addButtonSetup() {
     return [
       {
