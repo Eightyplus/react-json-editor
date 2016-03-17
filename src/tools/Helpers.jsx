@@ -18,8 +18,12 @@ export function render_item(key, jkey, value, propagateChanges, isLast, level) {
   }
 }
 
-export function get_options() {
-  return ['string', 'number', 'boolean', 'object', 'array', 'whitespace', 'null']
+export function get_options(structure, level) {
+  if (typeof structure.levels === 'undefined' || level < structure.levels) {
+    return ['string', 'number', 'boolean', 'object', 'array', 'whitespace', 'null'];
+  }
+
+  return ['string', 'number', 'boolean', 'whitespace', 'null'];
 }
 
 export function is_container(type) {

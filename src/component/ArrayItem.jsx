@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 
-import {render_item} from './../tools/Helpers'
+import { render_item, get_options } from './../tools/Helpers'
 import AddButton from './AddButton'
 
 class ArrayItem  extends Component {
@@ -18,14 +18,11 @@ class ArrayItem  extends Component {
   };
 
   addButtonSetup() {
-    const setup = (this.props.level < this.context.setup.structure.levels) ?
-      true : ['string', 'number', 'boolean', 'whitespace', 'null'];
-
     return [
       {
         type: 'String',
         placeholder: 'value',
-        multiple: setup
+        multiple: get_options(this.context.setup.structure, this.props.level)
       }
     ];
   }

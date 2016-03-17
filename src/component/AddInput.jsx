@@ -32,21 +32,18 @@ class AddInput extends Component {
   }
 
   select(setup) {
-    if (setup === false) {
-      return null;
-    } else if (typeof setup === 'undefined' || setup === true) {
-      setup = get_options();
+    if (setup.length > 0) {
+      const input = setup.map(function (option) {
+        return <option key={option} value={option}>{option}</option>
+      }, this);
+      return (
+        <select onChange={this.handleSelectChange}
+                defaultValue={this.state.type}>
+          {input}
+        </select>
+      );
     }
-
-    const input = setup.map(function(option) {
-      return <option key={option} value={option}>{option}</option>
-    }, this);
-    return (
-      <select onChange={this.handleSelectChange}
-              defaultValue={this.state.type}>
-        {input}
-      </select>
-    );
+    return null;
   }
 
   input() {

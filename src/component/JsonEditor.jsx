@@ -120,6 +120,7 @@ class JsonEditor extends Component {
       PropTypes.array,
       PropTypes.object
     ]),
+    structure: PropTypes.object,
     defaultKey: PropTypes.string,
     defaultJsonKey: PropTypes.string,
     propagateChanges: PropTypes.func.isRequired
@@ -142,7 +143,7 @@ class JsonEditor extends Component {
   getChildContext() {
     return {
       styling: this.state.styling,
-      setup: {tableLike: this.props.tableLike}
+      setup: {tableLike: this.props.tableLike, structure: this.props.structure || {}}
     };
   }
 
