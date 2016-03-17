@@ -13,7 +13,7 @@ class ObjectItem extends Component {
 
   static propTypes = {
     jkey: PropTypes.string.isRequired,
-    doc: PropTypes.array.isRequired,
+    doc: PropTypes.object.isRequired,
     level: PropTypes.number.isRequired,
     propagateChanges: PropTypes.func.isRequired
   };
