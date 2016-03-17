@@ -68,17 +68,19 @@ export function add2text (text, index, add) {
 }
 
 function showError(error, text) {
-  const start = error.indexOf(' at line ');
-  const middle = error.indexOf(' column ');
-  const end = error.indexOf(' of the JSON data');
+  if (typeof text !== 'undefined') {
+    const start = error.indexOf(' at line ');
+    const middle = error.indexOf(' column ');
+    const end = error.indexOf(' of the JSON data');
 
-  const at = parseInt(error.substr(start + 9, middle)) - 1;
-  const column = parseInt(error.substr(middle + 8, end)) - 1;
+    const at = parseInt(error.substr(start + 9, middle)) - 1;
+    const column = parseInt(error.substr(middle + 8, end)) - 1;
 
-  var lines = text.split('\n');
-  for(var line = 0; line < lines.length; line++){
-    if (at == line) {
-      return add2text(lines[line], column, '\u02F0');
+    var lines = text.split('\n');
+    for(var line = 0; line < lines.length; line++){
+      if (at == line) {
+        return add2text(lines[line], column, '\u02F0');
+      }
     }
   }
 }
