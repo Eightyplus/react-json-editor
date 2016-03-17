@@ -14,6 +14,7 @@ class ObjectItem extends Component {
   static propTypes = {
     jkey: PropTypes.string.isRequired,
     doc: PropTypes.array.isRequired,
+    level: PropTypes.number.isRequired,
     propagateChanges: PropTypes.func.isRequired
   };
 
@@ -79,11 +80,12 @@ class ObjectItem extends Component {
   render() {
     const keys = Object.keys(this.props.doc);
     const rows = keys.map(function(jkey, i) {
+      const key = this.props.jkey + '.' + jkey + i;
       const isLast = i == keys.length - 1;
 
       return <div key={this.props.jkey + '.r' + i} className='ObjectRow' style={this.getRowStyle()}>
         <KeyItem key={this.props.jkey + '.k' + i} jkey={jkey} propagateKeyChange={this.propagateKeyChange} />
-        {render_item(this.props.jkey + '.' + jkey + i, jkey, this.props.doc[jkey], this.propagateChanges, isLast)}
+        {render_item(key, jkey, this.props.doc[jkey], this.propagateChanges, isLast, this.props.level)}
       </div>
     }, this);
 

@@ -13,6 +13,7 @@ class ArrayItem  extends Component {
   static propTypes = {
     jkey: PropTypes.string.isRequired,
     doc: PropTypes.array.isRequired,
+    level: PropTypes.number.isRequired,
     propagateChanges: PropTypes.func.isRequired
   };
 
@@ -59,8 +60,10 @@ class ArrayItem  extends Component {
     const lastIndex = this.props.doc.length - 1;
     const items = this.props.doc.map(function(item, index) {
       const key = this.props.jkey + index;
+      const isLast = index == lastIndex;
+
       return(<div className='ArrayRow' style={this.getRowStyle()}>
-        {render_item(key, index, item, this.propagateChanges, index == lastIndex)}
+        {render_item(key, index, item, this.propagateChanges, isLast, this.props.level)}
       </div> );
     }, this);
 
