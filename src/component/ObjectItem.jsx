@@ -19,6 +19,9 @@ class ObjectItem extends Component {
   };
 
   addButtonSetup() {
+    const setup = (this.props.level < this.context.setup.structure.levels) ?
+      true : ['string', 'number', 'boolean', 'whitespace', 'null'];
+
     return [
       {
         type: 'text',
@@ -28,7 +31,7 @@ class ObjectItem extends Component {
       {
         type: 'text',
         placeholder: 'value',
-        multiple: true
+        multiple: setup
       }
     ];
   }

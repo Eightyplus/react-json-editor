@@ -18,11 +18,14 @@ class ArrayItem  extends Component {
   };
 
   addButtonSetup() {
+    const setup = (this.props.level < this.context.setup.structure.levels) ?
+      true : ['string', 'number', 'boolean', 'whitespace', 'null'];
+
     return [
       {
         type: 'String',
         placeholder: 'value',
-        multiple: true
+        multiple: setup
       }
     ];
   }

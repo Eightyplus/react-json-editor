@@ -31,8 +31,14 @@ class AddInput extends Component {
     }
   }
 
-  select() {
-    const input = get_options().map(function(option) {
+  select(setup) {
+    if (setup === false) {
+      return null;
+    } else if (typeof setup === 'undefined' || setup === true) {
+      setup = get_options();
+    }
+
+    const input = setup.map(function(option) {
       return <option key={option} value={option}>{option}</option>
     }, this);
     return (
@@ -72,7 +78,7 @@ class AddInput extends Component {
     const { multiple } = this.props;
 
     return (<div className="AddInput">
-      {multiple && this.select()}
+      {this.select(multiple)}
       {this.state.show ? this.input() : this.doneButton()}
     </div>);
   }
