@@ -63,19 +63,21 @@ export function verify_structure(structure) {
 }
 
 function verify(definition, definitions) {
-  if (definition.children_allowed instanceof Array) {
-    for (var child in definition.children_allowed) {
-      if (get_standard().indexOf(child) != -1) {
-        if (typeof definitions === 'undefined') {
-          throw Error('Custom allowed child (' + child + ') specified, but no custom definitions.');
-        }
-        if (!definitions.hasOwnProperty(child)) {
-          throw Error('Allowed child (' + child + ') is not specified in definitions.');
+  if(typeof definition.children_allowed !== 'undefined') {
+    if (definition.children_allowed instanceof Array) {
+      for (var child in definition.children_allowed) {
+        if (get_standard().indexOf(child) != -1) {
+          if (typeof definitions === 'undefined') {
+            throw Error('Custom allowed child (' + child + ') specified, but no custom definitions.');
+          }
+          if (!definitions.hasOwnProperty(child)) {
+            throw Error('Allowed child (' + child + ') is not specified in definitions.');
+          }
         }
       }
+    } else {
+      throw Error('children_allow must be an array');
     }
-  } else {
-    throw Error('children_allow must be an array');
   }
 }
 
