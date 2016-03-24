@@ -26,6 +26,34 @@ class App extends Component{
     this.setState({json: json, text: JSON.stringify(json)})
   };
 
+  structure() {
+    // levels
+    // definitions: {type, value, children_allowed, children_max}
+    // children_allowed, children_max
+
+    return {
+      definitions: {
+        'etc.': {
+          type: 'object',
+          value: {levels: 0, arrayKey: [1, 2, 3], sKey: 'Batman'}
+        },
+        'misc': {
+          type: 'string',
+          value: 'miscellaneous'
+        },
+        'container': {
+          type: 'object',
+          children_allowed: ['misc', 'etc.'],
+          children_max: {
+            'misc': 1
+          }
+        }
+      },
+      levels: 3,
+      children_allowed: ['object', 'array', 'container', 'etc.']
+    };
+  }
+
   render () {
     return (
       <div>
@@ -37,7 +65,7 @@ class App extends Component{
           <button onClick={this.loadJson}>Load typed json</button>
           {this.state.errorText && <div>{this.state.errorText}</div>}
         </div>
-        <JsonEditor value={this.state.json} tableLike={true} propagateChanges={this.update}/>
+        <JsonEditor value={this.state.json} tableLike={true} structure={this.structure()} propagateChanges={this.update}/>
       </div>
     );
   }

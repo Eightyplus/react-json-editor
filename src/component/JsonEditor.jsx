@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import merge from 'merge';
 
-import {render_item} from './../tools/Helpers'
+import {render_item, verify_structure} from './../tools/Helpers'
 import AddButton from './AddButton'
 
 const styling = {
@@ -133,6 +133,7 @@ class JsonEditor extends Component {
 
   constructor(props){
     super(props);
+    verify_structure(props.structure);
     this.state = {
       defaultKey: props.defaultKey || 'json.',
       defaultJsonKey: props.defaultJsonKey || 'root',

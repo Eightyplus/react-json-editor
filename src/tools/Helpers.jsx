@@ -18,12 +18,65 @@ export function render_item(key, jkey, value, propagateChanges, isLast, level) {
   }
 }
 
-export function get_options(structure, level) {
+export function get_options(structure, level, name) {
+  if (typeof name !== 'undefined') {
+    const definition = get_definition(structure, name);
+    if (definition && typeof definition.children_allowed !== 'undefined') {
+      return definition.children_allowed;
+    }
+  }
+
   if (typeof structure.levels === 'undefined' || level < structure.levels) {
     return ['string', 'number', 'boolean', 'object', 'array', 'whitespace', 'null'];
   }
 
   return ['string', 'number', 'boolean', 'whitespace', 'null'];
+}
+
+function get_standard() {
+  return ['string', 'number', 'boolean', 'object', 'array', 'whitespace', 'null'];
+}
+
+function get_definition(structure, name) {
+  if (typeof structure.definitions !== 'undefined') {
+    if (structure.definitions.hasOwnProperty(name)) {
+      return structure.definitions[name];
+    }
+  }
+  return undefined;
+}
+
+export function verify_structure(structure) {
+  if (typeof structure !== 'undefined') {
+    if (typeof structure.children_allowed !== 'undefined') {
+      verify(structure, structure.definitions);
+
+      if (typeof structure.definitions !== 'undefined') {
+        const keys = Object.keys(structure.definitions);
+        for (let index in keys) {
+          const key = keys[index];
+          verify(structure.definitions[key], structure.definitions);
+        }
+      }
+    }
+  }
+}
+
+function verify(definition, definitions) {
+  if (definition.children_allowed instanceof Array) {
+    for (var child in definition.children_allowed) {
+      if (get_standard().indexOf(child) != -1) {
+        if (typeof definitions === 'undefined') {
+          throw Error('Custom allowed child (' + child + ') specified, but no custom definitions.');
+        }
+        if (!definitions.hasOwnProperty(child)) {
+          throw Error('Allowed child (' + child + ') is not specified in definitions.');
+        }
+      }
+    }
+  } else {
+    throw Error('children_allow must be an array');
+  }
 }
 
 export function is_container(type) {
