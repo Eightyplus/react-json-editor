@@ -24,7 +24,7 @@ class MyComponent extends Component {
   }
   
   callback = (changes) => {
-    this.setState({json: changes.json});
+    this.setState({json: changes});
   };
 
   render() {
