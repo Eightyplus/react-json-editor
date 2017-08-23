@@ -73,10 +73,7 @@ class ValueItem extends Component {
   };
 
   value() {
-    if (this.props.value === null) {
-      return 'null';
-    }
-    return this.props.value.toString();
+    return String(this.props.value);
   }
 
   getClass() {
