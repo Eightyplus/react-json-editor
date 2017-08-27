@@ -1,6 +1,6 @@
 {
   "name": "react-json-edit",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "JSON Editor for React",
   "main": "index.js",
   "scripts": {
@@ -36,13 +36,14 @@
     "babel-preset-react-hmre": "^1.1.0",
     "babel-preset-stage-0": "^6.5.0",
     "css-loader": "^0.23.1",
-    "merge": "^1.2.0",
     "npm-install-webpack-plugin": "^2.0.2",
-    "react-dom": "^0.14.7",
     "webpack": "^1.12.12",
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
-    "react": "^0.14.7"
+    "merge": "^1.2.0",
+    "prop-types": "^15.5.10",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
   }
 }

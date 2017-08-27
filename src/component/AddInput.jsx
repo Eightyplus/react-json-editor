@@ -1,5 +1,5 @@
-import React, { PropTypes, Component } from 'react';
-
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {is_container, get_options, text2value} from './../tools/Helpers'
 
 class AddInput extends Component {

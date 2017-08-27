@@ -60,7 +60,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  value: true
 	});
 
-	var _JsonEditor = __webpack_require__(8);
+	var _JsonEditor = __webpack_require__(9);
 
 	Object.defineProperty(exports, 'JsonEditor', {
 	  enumerable: true,
@@ -69,7 +69,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 
-	var _Helpers = __webpack_require__(2);
+	var _Helpers = __webpack_require__(3);
 
 	Object.defineProperty(exports, 'parse', {
 	  enumerable: true,
@@ -98,6 +98,42 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
+	/**
+	 * Copyright 2013-present, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 */
+
+	if (false) {
+	  var REACT_ELEMENT_TYPE = (typeof Symbol === 'function' &&
+	    Symbol.for &&
+	    Symbol.for('react.element')) ||
+	    0xeac7;
+
+	  var isValidElement = function(object) {
+	    return typeof object === 'object' &&
+	      object !== null &&
+	      object.$$typeof === REACT_ELEMENT_TYPE;
+	  };
+
+	  // By explicitly using `prop-types` you are opting into new development behavior.
+	  // http://fb.me/prop-types-in-prod
+	  var throwOnDirectAccess = true;
+	  module.exports = require('./factoryWithTypeCheckers')(isValidElement, throwOnDirectAccess);
+	} else {
+	  // By explicitly using `prop-types` you are opting into new production behavior.
+	  // http://fb.me/prop-types-in-prod
+	  module.exports = __webpack_require__(12)();
+	}
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
@@ -115,11 +151,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ArrayItem = __webpack_require__(7);
+	var _ArrayItem = __webpack_require__(8);
 
 	var _ArrayItem2 = _interopRequireDefault(_ArrayItem);
 
-	var _ObjectItem = __webpack_require__(10);
+	var _ObjectItem = __webpack_require__(11);
 
 	var _ObjectItem2 = _interopRequireDefault(_ObjectItem);
 
@@ -203,16 +239,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    var lines = text.split('\n');
 	    for (var line = 0; line < lines.length; line++) {
-	      if (at == line) {
+	      if (at === line) {
 	        return add2text(lines[line], column, '\u02F0');
 	      }
 	    }
 	  }
-	}
-
-	function isJson(text) {
-	  return (/^[\],:{}\s]*$/.test(text.replace(/\\["\\\/bfnrtu]/g, '@').replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']').replace(/(?:^|:|,)(?:\s*\[)+/g, ''))
-	  );
 	}
 
 	function parse(text) {
@@ -227,7 +258,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -243,6 +274,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
+
+	var _propTypes = __webpack_require__(2);
+
+	var _propTypes2 = _interopRequireDefault(_propTypes);
 
 	var _AddInput = __webpack_require__(5);
 
@@ -363,16 +398,394 @@ return /******/ (function(modules) { // webpackBootstrap
 	}(_react.Component);
 
 	AddButton.propTypes = {
-	  onDone: _react.PropTypes.func.isRequired,
-	  setup: _react.PropTypes.array.isRequired
+	  onDone: _propTypes2.default.func.isRequired,
+	  setup: _propTypes2.default.array.isRequired
 	};
 	AddButton.contextTypes = {
-	  styling: _react.PropTypes.object
+	  styling: _propTypes2.default.object
 	};
 	exports.default = AddButton;
 
 /***/ }),
-/* 4 */
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _propTypes = __webpack_require__(2);
+
+	var _propTypes2 = _interopRequireDefault(_propTypes);
+
+	var _Helpers = __webpack_require__(3);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var AddInput = function (_Component) {
+	  _inherits(AddInput, _Component);
+
+	  function AddInput(props) {
+	    _classCallCheck(this, AddInput);
+
+	    var _this = _possibleConstructorReturn(this, (AddInput.__proto__ || Object.getPrototypeOf(AddInput)).call(this, props));
+
+	    _initialiseProps.call(_this);
+
+	    var type = props.type || 'string';
+	    _this.state = {
+	      type: type,
+	      value: props.value,
+	      show: !(0, _Helpers.is_container)(type)
+	    };
+	    return _this;
+	  }
+
+	  _createClass(AddInput, [{
+	    key: 'select',
+	    value: function select(setup) {
+	      if (setup.length > 0) {
+	        var input = setup.map(function (option) {
+	          return _react2.default.createElement(
+	            'option',
+	            { key: option, value: option },
+	            option
+	          );
+	        }, this);
+	        return _react2.default.createElement(
+	          'select',
+	          { onChange: this.handleSelectChange,
+	            defaultValue: this.state.type },
+	          input
+	        );
+	      }
+	      return null;
+	    }
+	  }, {
+	    key: 'input',
+	    value: function input() {
+	      var _props = this.props,
+	          defaultValue = _props.defaultValue,
+	          placeholder = _props.placeholder;
+
+	      return _react2.default.createElement('input', { className: 'add-input',
+	        style: this.getStyle(),
+	        type: 'text',
+	        autoFocus: false,
+	        defaultValue: defaultValue,
+	        placeholder: placeholder,
+	        onBlur: this.finishEdit,
+	        onChange: this.handleInputChange,
+	        onKeyPress: this.checkEnter });
+	    }
+	  }, {
+	    key: 'doneButton',
+	    value: function doneButton() {
+	      return _react2.default.createElement(
+	        'button',
+	        { className: 'add-button', style: this.getButtonStyle(), onClick: this.onDone },
+	        '\u221A'
+	      );
+	    }
+	  }, {
+	    key: 'getStyle',
+	    value: function getStyle() {
+	      return this.context.styling['add-input'];
+	    }
+	  }, {
+	    key: 'getButtonStyle',
+	    value: function getButtonStyle() {
+	      return this.context.styling['add-button'];
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var multiple = this.props.multiple;
+
+
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'AddInput' },
+	        this.select(multiple),
+	        this.state.show ? this.input() : this.doneButton()
+	      );
+	    }
+	  }]);
+
+	  return AddInput;
+	}(_react.Component);
+
+	AddInput.propTypes = {
+	  type: _propTypes2.default.string,
+	  multiple: _propTypes2.default.bool.isRequired,
+	  defaultValue: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number, _propTypes2.default.bool]),
+	  placeholder: _propTypes2.default.string,
+	  onChange: _propTypes2.default.func.isRequired,
+	  onDone: _propTypes2.default.func.isRequired
+	};
+	AddInput.contextTypes = {
+	  styling: _propTypes2.default.object
+	};
+
+	var _initialiseProps = function _initialiseProps() {
+	  var _this2 = this;
+
+	  this.handleInputChange = function (event) {
+	    var value = (0, _Helpers.text2value)(_this2.state.type, event.target.value);
+	    _this2.props.onChange(_this2.props.index, value);
+	    _this2.setState({ value: value });
+	  };
+
+	  this.handleSelectChange = function (event) {
+	    var options = event.target.options;
+	    var type = [];
+	    for (var i = 0; i < options.length; i++) {
+	      if (options[i].selected) {
+	        type = options[i].value;
+	        break;
+	      }
+	    }
+	    var isContainer = (0, _Helpers.is_container)(type);
+	    var value = isContainer ? (0, _Helpers.text2value)(type, _this2.state.value) : _this2.state.value;
+
+	    _this2.setState({ type: type, show: !isContainer });
+	    _this2.props.onChange(_this2.props.index, value);
+	  };
+
+	  this.checkEnter = function (event) {
+	    if (event.key === 'Enter') {
+	      _this2.finishEdit(event);
+	    }
+	  };
+
+	  this.finishEdit = function (event) {
+	    var value = (0, _Helpers.text2value)(_this2.state.type, event.target.value);
+	    _this2.props.onDone(_this2.props.index, value);
+	  };
+
+	  this.onDone = function () {
+	    var value = (0, _Helpers.text2value)(_this2.state.type, _this2.state.value);
+	    _this2.props.onDone(_this2.props.index, value);
+	  };
+	};
+
+	exports.default = AddInput;
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _propTypes = __webpack_require__(2);
+
+	var _propTypes2 = _interopRequireDefault(_propTypes);
+
+	var _merge = __webpack_require__(7);
+
+	var _merge2 = _interopRequireDefault(_merge);
+
+	var _Helpers = __webpack_require__(3);
+
+	var _AddInput = __webpack_require__(5);
+
+	var _AddInput2 = _interopRequireDefault(_AddInput);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ValueItem = function (_Component) {
+	  _inherits(ValueItem, _Component);
+
+	  function ValueItem(props) {
+	    _classCallCheck(this, ValueItem);
+
+	    var _this = _possibleConstructorReturn(this, (ValueItem.__proto__ || Object.getPrototypeOf(ValueItem)).call(this, props));
+
+	    _this.mouseOver = function () {
+	      _this.setState({ hover: true });
+	    };
+
+	    _this.mouseOut = function () {
+	      _this.setState({ hover: false });
+	    };
+
+	    _this.onChange = function (index, value) {
+	      // ignore
+	    };
+
+	    _this.onDone = function (index, value) {
+	      _this.propagateChanges(value);
+	    };
+
+	    _this.onDelete = function (event) {
+	      event.stopPropagation();
+	      _this.propagateDelete();
+	    };
+
+	    _this.activateEdit = function (event) {
+	      _this.setState({ editing: true });
+	    };
+
+	    _this.state = {
+	      editing: false,
+	      hover: false
+	    };
+	    return _this;
+	  }
+
+	  _createClass(ValueItem, [{
+	    key: 'propagateChanges',
+	    value: function propagateChanges(value) {
+	      this.setState({ editing: false });
+
+	      if (this.props.propagateChanges && this.props.value != value) {
+	        this.props.propagateChanges('update', this.props.index, value);
+	      }
+	    }
+	  }, {
+	    key: 'propagateDelete',
+	    value: function propagateDelete() {
+	      if (this.props.propagateChanges) {
+	        this.props.propagateChanges('delete', this.props.index);
+	      }
+	    }
+	  }, {
+	    key: 'value',
+	    value: function value() {
+	      return String(this.props.value);
+	    }
+	  }, {
+	    key: 'getClass',
+	    value: function getClass() {
+	      if (this.props.value === null) {
+	        return 'null';
+	      }
+	      return _typeof(this.props.value);
+	    }
+	  }, {
+	    key: 'getClassName',
+	    value: function getClassName() {
+	      return (0, _Helpers.capitalize)(this.getClass()) + 'Item';
+	    }
+	  }, {
+	    key: 'getStyle',
+	    value: function getStyle() {
+	      if (this.context.styling.hasOwnProperty(this.getClass())) {
+	        var classStyling = this.context.styling[this.getClass()];
+	        return (0, _merge2.default)(true, this.context.styling['value'], classStyling);
+	      }
+	      return this.context.styling['value'];
+	    }
+	  }, {
+	    key: 'getSuffix',
+	    value: function getSuffix() {
+	      return this.props.isLast ? null : ',';
+	    }
+	  }, {
+	    key: 'editSettings',
+	    value: function editSettings() {
+	      return {
+	        type: this.getClass(),
+	        defaultValue: this.props.value,
+	        multiple: true
+	      };
+	    }
+	  }, {
+	    key: 'renderEdit',
+	    value: function renderEdit() {
+	      var settings = this.editSettings();
+	      return _react2.default.createElement(_AddInput2.default, _extends({ index: 0, autoFocus: false, onChange: this.onChange, onDone: this.onDone }, settings));
+	    }
+	  }, {
+	    key: 'renderInnerValue',
+	    value: function renderInnerValue() {
+	      return _react2.default.createElement(
+	        'span',
+	        null,
+	        this.value(),
+	        this.context.setup.tableLike ? null : this.getSuffix()
+	      );
+	    }
+	  }, {
+	    key: 'renderValue',
+	    value: function renderValue() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: this.getClassName(), style: this.getStyle(), onClick: this.activateEdit,
+	          onMouseOver: this.mouseOver, onMouseOut: this.mouseOut },
+	        this.renderInnerValue(),
+	        this.renderDelete()
+	      );
+	    }
+	  }, {
+	    key: 'renderDelete',
+	    value: function renderDelete() {
+	      var visible = { 'visibility': this.state.hover ? 'visible' : 'hidden' };
+	      var style = (0, _merge2.default)(true, this.context.styling['delete-button'], visible);
+	      return _react2.default.createElement(
+	        'button',
+	        { className: 'delete-button', onClick: this.onDelete, style: style },
+	        '\u232B'
+	      );
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return this.state.editing ? this.renderEdit() : this.renderValue();
+	    }
+	  }]);
+
+	  return ValueItem;
+	}(_react.Component);
+
+	ValueItem.propTypes = {
+	  index: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number]).isRequired,
+	  value: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number, _propTypes2.default.bool]),
+	  isLast: _propTypes2.default.bool,
+	  propagateChanges: _propTypes2.default.func.isRequired
+	};
+	ValueItem.contextTypes = {
+	  styling: _propTypes2.default.object,
+	  setup: _propTypes2.default.object
+	};
+	exports.default = ValueItem;
+
+/***/ }),
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {/*!
@@ -550,10 +963,10 @@ return /******/ (function(modules) { // webpackBootstrap
 		}
 
 	})(typeof module === 'object' && module && typeof module.exports === 'object' && module.exports);
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(16)(module)))
 
 /***/ }),
-/* 5 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -568,379 +981,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Helpers = __webpack_require__(2);
+	var _propTypes = __webpack_require__(2);
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	var _propTypes2 = _interopRequireDefault(_propTypes);
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	var _Helpers = __webpack_require__(3);
 
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var AddInput = function (_Component) {
-	  _inherits(AddInput, _Component);
-
-	  function AddInput(props) {
-	    _classCallCheck(this, AddInput);
-
-	    var _this = _possibleConstructorReturn(this, (AddInput.__proto__ || Object.getPrototypeOf(AddInput)).call(this, props));
-
-	    _initialiseProps.call(_this);
-
-	    var type = props.type || 'string';
-	    _this.state = {
-	      type: type,
-	      value: props.value,
-	      show: !(0, _Helpers.is_container)(type)
-	    };
-	    return _this;
-	  }
-
-	  _createClass(AddInput, [{
-	    key: 'select',
-	    value: function select(setup) {
-	      if (setup.length > 0) {
-	        var input = setup.map(function (option) {
-	          return _react2.default.createElement(
-	            'option',
-	            { key: option, value: option },
-	            option
-	          );
-	        }, this);
-	        return _react2.default.createElement(
-	          'select',
-	          { onChange: this.handleSelectChange,
-	            defaultValue: this.state.type },
-	          input
-	        );
-	      }
-	      return null;
-	    }
-	  }, {
-	    key: 'input',
-	    value: function input() {
-	      var _props = this.props,
-	          defaultValue = _props.defaultValue,
-	          placeholder = _props.placeholder;
-
-	      return _react2.default.createElement('input', { className: 'add-input',
-	        style: this.getStyle(),
-	        type: 'text',
-	        autoFocus: false,
-	        defaultValue: defaultValue,
-	        placeholder: placeholder,
-	        onBlur: this.finishEdit,
-	        onChange: this.handleInputChange,
-	        onKeyPress: this.checkEnter });
-	    }
-	  }, {
-	    key: 'doneButton',
-	    value: function doneButton() {
-	      return _react2.default.createElement(
-	        'button',
-	        { className: 'add-button', style: this.getButtonStyle(), onClick: this.onDone },
-	        '\u221A'
-	      );
-	    }
-	  }, {
-	    key: 'getStyle',
-	    value: function getStyle() {
-	      return this.context.styling['add-input'];
-	    }
-	  }, {
-	    key: 'getButtonStyle',
-	    value: function getButtonStyle() {
-	      return this.context.styling['add-button'];
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var multiple = this.props.multiple;
-
-
-	      return _react2.default.createElement(
-	        'div',
-	        { className: 'AddInput' },
-	        this.select(multiple),
-	        this.state.show ? this.input() : this.doneButton()
-	      );
-	    }
-	  }]);
-
-	  return AddInput;
-	}(_react.Component);
-
-	AddInput.propTypes = {
-	  type: _react.PropTypes.string,
-	  multiple: _react.PropTypes.bool.isRequired,
-	  defaultValue: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.number, _react.PropTypes.bool]),
-	  placeholder: _react.PropTypes.string,
-	  onChange: _react.PropTypes.func.isRequired,
-	  onDone: _react.PropTypes.func.isRequired
-	};
-	AddInput.contextTypes = {
-	  styling: _react.PropTypes.object
-	};
-
-	var _initialiseProps = function _initialiseProps() {
-	  var _this2 = this;
-
-	  this.handleInputChange = function (event) {
-	    var value = (0, _Helpers.text2value)(_this2.state.type, event.target.value);
-	    _this2.props.onChange(_this2.props.index, value);
-	    _this2.setState({ value: value });
-	  };
-
-	  this.handleSelectChange = function (event) {
-	    var options = event.target.options;
-	    var type = [];
-	    for (var i = 0; i < options.length; i++) {
-	      if (options[i].selected) {
-	        type = options[i].value;
-	        break;
-	      }
-	    }
-	    var isContainer = (0, _Helpers.is_container)(type);
-	    var value = isContainer ? (0, _Helpers.text2value)(type, _this2.state.value) : _this2.state.value;
-
-	    _this2.setState({ type: type, show: !isContainer });
-	    _this2.props.onChange(_this2.props.index, value);
-	  };
-
-	  this.checkEnter = function (event) {
-	    if (event.key === 'Enter') {
-	      _this2.finishEdit(event);
-	    }
-	  };
-
-	  this.finishEdit = function (event) {
-	    var value = (0, _Helpers.text2value)(_this2.state.type, event.target.value);
-	    _this2.props.onDone(_this2.props.index, value);
-	  };
-
-	  this.onDone = function () {
-	    var value = (0, _Helpers.text2value)(_this2.state.type, _this2.state.value);
-	    _this2.props.onDone(_this2.props.index, value);
-	  };
-	};
-
-	exports.default = AddInput;
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _merge = __webpack_require__(4);
-
-	var _merge2 = _interopRequireDefault(_merge);
-
-	var _Helpers = __webpack_require__(2);
-
-	var _AddInput = __webpack_require__(5);
-
-	var _AddInput2 = _interopRequireDefault(_AddInput);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var ValueItem = function (_Component) {
-	  _inherits(ValueItem, _Component);
-
-	  function ValueItem(props) {
-	    _classCallCheck(this, ValueItem);
-
-	    var _this = _possibleConstructorReturn(this, (ValueItem.__proto__ || Object.getPrototypeOf(ValueItem)).call(this, props));
-
-	    _this.mouseOver = function () {
-	      _this.setState({ hover: true });
-	    };
-
-	    _this.mouseOut = function () {
-	      _this.setState({ hover: false });
-	    };
-
-	    _this.onChange = function (index, value) {
-	      // ignore
-	    };
-
-	    _this.onDone = function (index, value) {
-	      _this.propagateChanges(value);
-	    };
-
-	    _this.onDelete = function (event) {
-	      event.stopPropagation();
-	      _this.propagateDelete();
-	    };
-
-	    _this.activateEdit = function (event) {
-	      _this.setState({ editing: true });
-	    };
-
-	    _this.state = {
-	      editing: false,
-	      hover: false
-	    };
-	    return _this;
-	  }
-
-	  _createClass(ValueItem, [{
-	    key: 'propagateChanges',
-	    value: function propagateChanges(value) {
-	      this.setState({ editing: false });
-
-	      if (this.props.propagateChanges && this.props.value != value) {
-	        this.props.propagateChanges('update', this.props.index, value);
-	      }
-	    }
-	  }, {
-	    key: 'propagateDelete',
-	    value: function propagateDelete() {
-	      if (this.props.propagateChanges) {
-	        this.props.propagateChanges('delete', this.props.index);
-	      }
-	    }
-	  }, {
-	    key: 'value',
-	    value: function value() {
-	      return String(this.props.value);
-	    }
-	  }, {
-	    key: 'getClass',
-	    value: function getClass() {
-	      if (this.props.value === null) {
-	        return 'null';
-	      }
-	      return _typeof(this.props.value);
-	    }
-	  }, {
-	    key: 'getClassName',
-	    value: function getClassName() {
-	      return (0, _Helpers.capitalize)(this.getClass()) + 'Item';
-	    }
-	  }, {
-	    key: 'getStyle',
-	    value: function getStyle() {
-	      if (this.context.styling.hasOwnProperty(this.getClass())) {
-	        var classStyling = this.context.styling[this.getClass()];
-	        return (0, _merge2.default)(true, this.context.styling['value'], classStyling);
-	      }
-	      return this.context.styling['value'];
-	    }
-	  }, {
-	    key: 'getSuffix',
-	    value: function getSuffix() {
-	      return this.props.isLast ? null : ',';
-	    }
-	  }, {
-	    key: 'editSettings',
-	    value: function editSettings() {
-	      return {
-	        type: this.getClass(),
-	        defaultValue: this.props.value,
-	        multiple: true
-	      };
-	    }
-	  }, {
-	    key: 'renderEdit',
-	    value: function renderEdit() {
-	      var settings = this.editSettings();
-	      return _react2.default.createElement(_AddInput2.default, _extends({ index: 0, autoFocus: false, onChange: this.onChange, onDone: this.onDone }, settings));
-	    }
-	  }, {
-	    key: 'renderInnerValue',
-	    value: function renderInnerValue() {
-	      return _react2.default.createElement(
-	        'span',
-	        null,
-	        this.value(),
-	        this.context.setup.tableLike ? null : this.getSuffix()
-	      );
-	    }
-	  }, {
-	    key: 'renderValue',
-	    value: function renderValue() {
-	      return _react2.default.createElement(
-	        'div',
-	        { className: this.getClassName(), style: this.getStyle(), onClick: this.activateEdit,
-	          onMouseOver: this.mouseOver, onMouseOut: this.mouseOut },
-	        this.renderInnerValue(),
-	        this.renderDelete()
-	      );
-	    }
-	  }, {
-	    key: 'renderDelete',
-	    value: function renderDelete() {
-	      var visible = { 'visibility': this.state.hover ? 'visible' : 'hidden' };
-	      var style = (0, _merge2.default)(true, this.context.styling['delete-button'], visible);
-	      return _react2.default.createElement(
-	        'button',
-	        { className: 'delete-button', onClick: this.onDelete, style: style },
-	        '\u232B'
-	      );
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      return this.state.editing ? this.renderEdit() : this.renderValue();
-	    }
-	  }]);
-
-	  return ValueItem;
-	}(_react.Component);
-
-	ValueItem.propTypes = {
-	  index: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.number]).isRequired,
-	  value: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.number, _react.PropTypes.bool]),
-	  isLast: _react.PropTypes.bool,
-	  propagateChanges: _react.PropTypes.func.isRequired
-	};
-	ValueItem.contextTypes = {
-	  styling: _react.PropTypes.object,
-	  setup: _react.PropTypes.object
-	};
-	exports.default = ValueItem;
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _Helpers = __webpack_require__(2);
-
-	var _AddButton = __webpack_require__(3);
+	var _AddButton = __webpack_require__(4);
 
 	var _AddButton2 = _interopRequireDefault(_AddButton);
 
@@ -1039,19 +1086,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	}(_react.Component);
 
 	ArrayItem.contextTypes = {
-	  styling: _react.PropTypes.object,
-	  setup: _react.PropTypes.object
+	  styling: _propTypes2.default.object,
+	  setup: _propTypes2.default.object
 	};
 	ArrayItem.propTypes = {
-	  jkey: _react.PropTypes.string.isRequired,
-	  doc: _react.PropTypes.array.isRequired,
-	  level: _react.PropTypes.number.isRequired,
-	  propagateChanges: _react.PropTypes.func.isRequired
+	  jkey: _propTypes2.default.string.isRequired,
+	  doc: _propTypes2.default.array.isRequired,
+	  level: _propTypes2.default.number.isRequired,
+	  propagateChanges: _propTypes2.default.func.isRequired
 	};
 	exports.default = ArrayItem;
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1066,13 +1113,17 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _merge = __webpack_require__(4);
+	var _propTypes = __webpack_require__(2);
+
+	var _propTypes2 = _interopRequireDefault(_propTypes);
+
+	var _merge = __webpack_require__(7);
 
 	var _merge2 = _interopRequireDefault(_merge);
 
-	var _Helpers = __webpack_require__(2);
+	var _Helpers = __webpack_require__(3);
 
-	var _AddButton = __webpack_require__(3);
+	var _AddButton = __webpack_require__(4);
 
 	var _AddButton2 = _interopRequireDefault(_AddButton);
 
@@ -1242,21 +1293,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	}(_react.Component);
 
 	JsonEditor.propTypes = {
-	  defaultValue: _react.PropTypes.oneOfType([_react.PropTypes.array, _react.PropTypes.object]),
-	  value: _react.PropTypes.oneOfType([_react.PropTypes.array, _react.PropTypes.object]),
-	  structure: _react.PropTypes.object,
-	  defaultKey: _react.PropTypes.string,
-	  defaultJsonKey: _react.PropTypes.string,
-	  propagateChanges: _react.PropTypes.func.isRequired
+	  defaultValue: _propTypes2.default.oneOfType([_propTypes2.default.array, _propTypes2.default.object]),
+	  value: _propTypes2.default.oneOfType([_propTypes2.default.array, _propTypes2.default.object]),
+	  structure: _propTypes2.default.object,
+	  defaultKey: _propTypes2.default.string,
+	  defaultJsonKey: _propTypes2.default.string,
+	  propagateChanges: _propTypes2.default.func.isRequired
 	};
 	JsonEditor.childContextTypes = {
-	  styling: _react.PropTypes.object,
-	  setup: _react.PropTypes.object
+	  styling: _propTypes2.default.object,
+	  setup: _propTypes2.default.object
 	};
 	exports.default = JsonEditor;
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1271,9 +1322,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _merge = __webpack_require__(4);
+	var _propTypes = __webpack_require__(2);
 
-	var _merge2 = _interopRequireDefault(_merge);
+	var _propTypes2 = _interopRequireDefault(_propTypes);
 
 	var _ValueItem2 = __webpack_require__(6);
 
@@ -1342,13 +1393,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	}(_ValueItem3.default);
 
 	KeyItem.propTypes = {
-	  jkey: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.number]).isRequired,
-	  propagateKeyChange: _react.PropTypes.func.isRequired
+	  jkey: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number]).isRequired,
+	  propagateKeyChange: _propTypes2.default.func.isRequired
 	};
 	exports.default = KeyItem;
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1363,13 +1414,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Helpers = __webpack_require__(2);
+	var _propTypes = __webpack_require__(2);
 
-	var _AddButton = __webpack_require__(3);
+	var _propTypes2 = _interopRequireDefault(_propTypes);
 
-	var _AddButton2 = _interopRequireDefault(_AddButton);
+	var _Helpers = __webpack_require__(3);
 
-	var _KeyItem = __webpack_require__(9);
+	var _KeyItem = __webpack_require__(10);
 
 	var _KeyItem2 = _interopRequireDefault(_KeyItem);
 
@@ -1472,7 +1523,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        { className: 'ObjectItem', style: this.getStyle() },
 	        this.context.setup.tableLike ? null : '{',
 	        rows,
-	        _react2.default.createElement(_AddButton2.default, { onDone: this.addItem, setup: this.addButtonSetup() }),
+	        _react2.default.createElement(AddButton, { onDone: this.addItem, setup: this.addButtonSetup() }),
 	        this.context.setup.tableLike ? null : '}'
 	      );
 	    }
@@ -1482,19 +1533,207 @@ return /******/ (function(modules) { // webpackBootstrap
 	}(_react.Component);
 
 	ObjectItem.contextTypes = {
-	  styling: _react.PropTypes.object,
-	  setup: _react.PropTypes.object
+	  styling: _propTypes2.default.object,
+	  setup: _propTypes2.default.object
 	};
 	ObjectItem.propTypes = {
-	  jkey: _react.PropTypes.string.isRequired,
-	  doc: _react.PropTypes.object.isRequired,
-	  level: _react.PropTypes.number.isRequired,
-	  propagateChanges: _react.PropTypes.func.isRequired
+	  jkey: _propTypes2.default.string.isRequired,
+	  doc: _propTypes2.default.object.isRequired,
+	  level: _propTypes2.default.number.isRequired,
+	  propagateChanges: _propTypes2.default.func.isRequired
 	};
 	exports.default = ObjectItem;
 
 /***/ }),
-/* 11 */
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright 2013-present, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 */
+
+	'use strict';
+
+	var emptyFunction = __webpack_require__(14);
+	var invariant = __webpack_require__(15);
+	var ReactPropTypesSecret = __webpack_require__(13);
+
+	module.exports = function() {
+	  function shim(props, propName, componentName, location, propFullName, secret) {
+	    if (secret === ReactPropTypesSecret) {
+	      // It is still safe when called from React.
+	      return;
+	    }
+	    invariant(
+	      false,
+	      'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
+	      'Use PropTypes.checkPropTypes() to call them. ' +
+	      'Read more at http://fb.me/use-check-prop-types'
+	    );
+	  };
+	  shim.isRequired = shim;
+	  function getShim() {
+	    return shim;
+	  };
+	  // Important!
+	  // Keep this list in sync with production version in `./factoryWithTypeCheckers.js`.
+	  var ReactPropTypes = {
+	    array: shim,
+	    bool: shim,
+	    func: shim,
+	    number: shim,
+	    object: shim,
+	    string: shim,
+	    symbol: shim,
+
+	    any: shim,
+	    arrayOf: getShim,
+	    element: shim,
+	    instanceOf: getShim,
+	    node: shim,
+	    objectOf: getShim,
+	    oneOf: getShim,
+	    oneOfType: getShim,
+	    shape: getShim
+	  };
+
+	  ReactPropTypes.checkPropTypes = emptyFunction;
+	  ReactPropTypes.PropTypes = ReactPropTypes;
+
+	  return ReactPropTypes;
+	};
+
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports) {
+
+	/**
+	 * Copyright 2013-present, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 */
+
+	'use strict';
+
+	var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
+
+	module.exports = ReactPropTypesSecret;
+
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports) {
+
+	"use strict";
+
+	/**
+	 * Copyright (c) 2013-present, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * 
+	 */
+
+	function makeEmptyFunction(arg) {
+	  return function () {
+	    return arg;
+	  };
+	}
+
+	/**
+	 * This function accepts and discards inputs; it has no side effects. This is
+	 * primarily useful idiomatically for overridable function endpoints which
+	 * always need to be callable, since JS lacks a null-call idiom ala Cocoa.
+	 */
+	var emptyFunction = function emptyFunction() {};
+
+	emptyFunction.thatReturns = makeEmptyFunction;
+	emptyFunction.thatReturnsFalse = makeEmptyFunction(false);
+	emptyFunction.thatReturnsTrue = makeEmptyFunction(true);
+	emptyFunction.thatReturnsNull = makeEmptyFunction(null);
+	emptyFunction.thatReturnsThis = function () {
+	  return this;
+	};
+	emptyFunction.thatReturnsArgument = function (arg) {
+	  return arg;
+	};
+
+	module.exports = emptyFunction;
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright (c) 2013-present, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 */
+
+	'use strict';
+
+	/**
+	 * Use invariant() to assert state which your program assumes to be true.
+	 *
+	 * Provide sprintf-style format (only %s is supported) and arguments
+	 * to provide information about what broke and what you were
+	 * expecting.
+	 *
+	 * The invariant message will be stripped in production, but the invariant
+	 * will remain to ensure logic does not differ in production.
+	 */
+
+	var validateFormat = function validateFormat(format) {};
+
+	if (false) {
+	  validateFormat = function validateFormat(format) {
+	    if (format === undefined) {
+	      throw new Error('invariant requires an error message argument');
+	    }
+	  };
+	}
+
+	function invariant(condition, format, a, b, c, d, e, f) {
+	  validateFormat(format);
+
+	  if (!condition) {
+	    var error;
+	    if (format === undefined) {
+	      error = new Error('Minified exception occurred; use the non-minified dev environment ' + 'for the full error message and additional helpful warnings.');
+	    } else {
+	      var args = [a, b, c, d, e, f];
+	      var argIndex = 0;
+	      error = new Error(format.replace(/%s/g, function () {
+	        return args[argIndex++];
+	      }));
+	      error.name = 'Invariant Violation';
+	    }
+
+	    error.framesToPop = 1; // we don't care about invariant's own frame
+	    throw error;
+	  }
+	}
+
+	module.exports = invariant;
+
+/***/ }),
+/* 16 */
 /***/ (function(module, exports) {
 
 	module.exports = function(module) {

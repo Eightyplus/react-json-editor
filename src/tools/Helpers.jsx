@@ -76,19 +76,13 @@ function showError(error, text) {
     const at = parseInt(error.substr(start + 9, middle)) - 1;
     const column = parseInt(error.substr(middle + 8, end)) - 1;
 
-    var lines = text.split('\n');
-    for(var line = 0; line < lines.length; line++){
-      if (at == line) {
+    const lines = text.split('\n');
+    for(let line = 0; line < lines.length; line++){
+      if (at === line) {
         return add2text(lines[line], column, '\u02F0');
       }
     }
   }
-}
-
-function isJson(text) {
-  return /^[\],:{}\s]*$/.test(text.replace(/\\["\\\/bfnrtu]/g, '@').
-  replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']').
-  replace(/(?:^|:|,)(?:\s*\[)+/g, ''));
 }
 
 export function parse(text) {
