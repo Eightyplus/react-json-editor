@@ -1,5 +1,5 @@
-import React, { PropTypes, Component } from 'react';
-import merge from 'merge';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import ValueItem from './ValueItem'
 
