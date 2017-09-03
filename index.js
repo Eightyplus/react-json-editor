@@ -1418,6 +1418,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
+	var _AddButton = __webpack_require__(4);
+
+	var _AddButton2 = _interopRequireDefault(_AddButton);
+
 	var _Helpers = __webpack_require__(3);
 
 	var _KeyItem = __webpack_require__(10);
@@ -1523,7 +1527,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        { className: 'ObjectItem', style: this.getStyle() },
 	        this.context.setup.tableLike ? null : '{',
 	        rows,
-	        _react2.default.createElement(AddButton, { onDone: this.addItem, setup: this.addButtonSetup() }),
+	        _react2.default.createElement(_AddButton2.default, { onDone: this.addItem, setup: this.addButtonSetup() }),
 	        this.context.setup.tableLike ? null : '}'
 	      );
 	    }

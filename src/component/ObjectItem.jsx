@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
+import AddButton from './AddButton';
 import { render_item, get_options } from './../tools/Helpers'
 import KeyItem from './KeyItem'
 
