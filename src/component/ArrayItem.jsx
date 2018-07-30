@@ -63,7 +63,7 @@ class ArrayItem  extends Component {
       const key = this.props.jkey + index;
       const isLast = index == lastIndex;
 
-      return(<div className='ArrayRow' style={this.getRowStyle()}>
+      return(<div key={key} className='ArrayRow' style={this.getRowStyle()}>
         {render_item(key, index, item, this.propagateChanges, isLast, this.props.level)}
       </div> );
     }, this);
