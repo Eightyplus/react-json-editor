@@ -37,8 +37,8 @@
     "babel-preset-stage-0": "^6.5.0",
     "css-loader": "^0.23.1",
     "npm-install-webpack-plugin": "^2.0.2",
-    "webpack": "^1.12.12",
-    "webpack-dev-server": "^1.14.1"
+    "webpack": "^5.75.0",
+    "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
     "merge": "^2.1.1",
